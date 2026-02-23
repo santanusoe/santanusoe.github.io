@@ -1,22 +1,24 @@
 <li>
   <strong>
     <a href="{{ base_path }}{{ include.p.url }}">{{ include.p.title }}</a>
-  </strong><br/>
-
-  {% if include.p.with %}
-    with {{ include.p.with }}.<br/>
-  {% endif %}
+  </strong>
+  {% if include.p.with %} with {{ include.p.with }}.{% endif %}
 
   {% if include.p.arxiv_id %}
-    <em>arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
+    <em> arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.
   {% elsif include.p.venue %}
-    <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
+    <em> {{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.
+  {% else %}
+    {{ include.p.date | date: "%Y" }}.
   {% endif %}
 
   {% if include.p.paperurl %}
     [<a href="{{ include.p.paperurl }}">arXiv</a>]
   {% endif %}
-  {% if include.p.slidesurl %}
-    &nbsp;[<a href="{{ include.p.slidesurl }}">slides</a>]
+
+  {% if include.p.doi %}
+    [<a href="https://doi.org/{{ include.p.doi }}">DOI</a>]
+  {% elsif include.p.doiurl %}
+    [<a href="{{ include.p.doiurl }}">DOI</a>]
   {% endif %}
 </li>
