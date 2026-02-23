@@ -7,26 +7,26 @@ author_profile: true
 
 {% include base_path %}
 
-## Preprints
+<h2>Preprints</h2>
 {% assign preprints = site.publications | where: "category", "preprints" | sort: "date" | reverse %}
-<ul>
-{% for p in preprints %}
-  {% include pub_compact_li.html p=p %}
-{% endfor %}
-</ul>
-
-## Journal Articles
-{% assign journals = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
 <ol>
-{% for p in journals %}
-  {% include pub_compact_li.html p=p %}
-{% endfor %}
+  {% for p in preprints %}
+    {% include pub_compact_li.html p=p %}
+  {% endfor %}
 </ol>
 
-## Conference Papers
+<h2>Journal Articles</h2>
+{% assign journals = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
+<ol>
+  {% for p in journals %}
+    {% include pub_compact_li.html p=p %}
+  {% endfor %}
+</ol>
+
+<h2>Conference Papers</h2>
 {% assign confs = site.publications | where: "category", "conferences" | sort: "date" | reverse %}
 <ol>
-{% for p in confs %}
-  {% include pub_compact_li.html p=p %}
-{% endfor %}
+  {% for p in confs %}
+    {% include pub_compact_li.html p=p %}
+  {% endfor %}
 </ol>
