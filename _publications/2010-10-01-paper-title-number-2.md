@@ -2,7 +2,7 @@
 title: "On generalized forward-reflected-backward method for monotone inclusion problems"
 collection: publications
 category: preprints
-permalink: /publication/your-journal-paper/
+date: 2025-06-01
 
 with: "V. Vetrivel and J.C. Yao, 2025"
 venue: "arxiv:2509.02005"
