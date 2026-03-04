@@ -3,7 +3,7 @@ title: "Your journal paper title"
 collection: publications
 permalink: /publication/your-journal-paper/
 date: 2025-06-01
-category: manuscripts
+category: preprints
 
 with: "A. Author and B. Author"
 venue: "SIAM J. Optim."
