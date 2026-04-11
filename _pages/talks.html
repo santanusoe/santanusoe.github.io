@@ -9,6 +9,7 @@ author_profile: true
 
 <ul class="compact-list talks-list">
   {% for post in talk_items %}
+    {% unless post.title == "Conference Proceeding talk 3 on Relevant Topic in Your Field" or post.title == "Talk 2 on Relevant Topic in Your Field" or post.title == "Tutorial 1 on Relevant Topic in Your Field" or post.title == "Talk 1 on Relevant Topic in Your Field" %}
     <li class="compact-list__item">
       <div class="compact-list__title">{{ post.title }}</div>
       <div class="compact-list__meta">
@@ -18,5 +19,6 @@ author_profile: true
         {% if post.date %} &mdash; {{ post.date | date: "%b %Y" }}{% endif %}
       </div>
     </li>
+    {% endunless %}
   {% endfor %}
 </ul>

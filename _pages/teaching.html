@@ -9,6 +9,7 @@ author_profile: true
 
 <ul class="compact-list teaching-list">
   {% for post in teaching_items %}
+    {% unless post.title == "Teaching experience 1" or post.title == "Teaching experience 2" %}
     <li class="compact-list__item">
       <div class="compact-list__title">{{ post.title }}</div>
       <div class="compact-list__meta">
@@ -17,5 +18,6 @@ author_profile: true
         {% if post.excerpt %} &mdash; {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
       </div>
     </li>
+    {% endunless %}
   {% endfor %}
 </ul>
