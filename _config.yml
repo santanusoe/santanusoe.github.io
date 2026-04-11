@@ -1,59 +1,43 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve -l -H localhost`. If you change this file, please restart the
-# server process.
-
-# Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
+site_theme               : "mint"
 title                    : "Santanu Soe"
 title_separator          : "-"
 name                     : &name "Santanu Soe"
-description              : 
-url                      : "https://santanusoe.github.io"  # https://[your GitHub username].github.io
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
+description              : "Personal academic website of Santanu Soe, PMRF and Joint PhD scholar in Mathematics at IIT Madras and The University of Melbourne."
+url                      : "https://santanusoe.github.io"
+baseurl                  : ""
 repository               : "santanusoe/santanusoe.github.io"
 
-# Site Author - The following control what appear as part of the author content on the side bar.
-#               If a field is blank the icon and link will not appear, otherwise it will be shown.
-#               Additional customization can be done by editing /_includes/author-profile.html
 author:
-  # Biographic information
-  avatar           : "profile.png"   # put this in /images/
-  name             : 
+  avatar           : "profile.png"
+  name             : "Santanu Soe"
   pronouns         :
-  bio              : 
-  location         : 
-  employer         : 
+  bio              : "PMRF and Joint PhD scholar in Mathematics working on convex optimisation, splitting methods, and monotone operator theory."
+  location         : "Chennai, India"
+  employer         : "IIT Madras & The University of Melbourne"
   uri              :
-  email            : "santanu.soe@student.unimleb.edu.au"
+  email            : "santanu.soe@student.unimelb.edu.au"
 
-  # Academic websites
   academia         :
   arxiv            :
-  googlescholar    :  "https://scholar.google.com/citations?user=1xQZCtQAAAAJ&hl=en"
+  googlescholar    : "https://scholar.google.com/citations?user=1xQZCtQAAAAJ&hl=en"
   inspire-hep      :
   impactstory      :
-  orcid            :   "https://orcid.org/0009-0005-1392-0003"
+  orcid            : "https://orcid.org/0009-0005-1392-0003"
   semantic         :
   ssrn             :
   pubmed           :
-  researchgate     :  "https://www.researchgate.net/profile/Santanu-Soe"
+  researchgate     : "https://www.researchgate.net/profile/Santanu-Soe"
   scopus           :
   zotero           :
 
-  # Repositories and software development
   bitbucket        :
   codepen          :
   dribbble         :
-  github           : 
+  github           : "santanusoe"
   kaggle           :
   stackoverflow    :
 
-  # Social media
   artstation       :
   bluesky          :
   facebook         :
