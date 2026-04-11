@@ -1,5 +1,5 @@
 ---
-title: "The Golden Ratio Proximal ADMM with Norm Independent Step-Sizes for Separable Convex Optimization"
+title: "The golden ratio proximal ADMM with norm independent step-sizes for separable convex optimization"
 collection: publications
 category: preprints
 date: 2025-10-01
