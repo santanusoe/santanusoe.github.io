@@ -12,9 +12,9 @@ author:
   avatar           : "profile.png"
   name             : "Santanu Soe"
   pronouns         :
-  bio              : "PMRF and Joint PhD scholar in Mathematics working on convex optimisation, splitting methods, and monotone operator theory."
-  location         : "Chennai, India"
-  employer         : "IIT Madras & The University of Melbourne"
+  bio              : 
+  location         : 
+  employer         : 
   uri              :
   email            : "santanu.soe@student.unimelb.edu.au"
 
