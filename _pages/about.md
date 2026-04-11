@@ -11,9 +11,3 @@ I am a [Prime Minister's Research Fellow (PMRF)](https://pmrf.in/) and a Joint P
 
 {: .notice--primary}
 **Research keywords.** Operator splitting, primal--dual methods, monotone inclusions, variational inequalities, and convex optimisation.
-
-## Research
-
-My research is centred on structured convex optimisation and monotone operator theory, with a particular emphasis on developing computationally efficient, largely parameter-free, and easily implementable algorithms.
-
-More specifically, I work on operator splitting methods, primal--dual algorithms, and monotone inclusion problems, together with applications that connect modern optimisation theory with machine learning and related computational problems.
