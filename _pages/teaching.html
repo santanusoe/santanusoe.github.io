@@ -5,8 +5,17 @@ permalink: /teaching/
 author_profile: true
 ---
 
-{% include base_path %}
+{% assign teaching_items = site.teaching | sort: "date" | reverse %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<ul class="compact-list teaching-list">
+  {% for post in teaching_items %}
+    <li class="compact-list__item">
+      <div class="compact-list__title">{{ post.title }}</div>
+      <div class="compact-list__meta">
+        {% if post.type %}{{ post.type }}{% endif %}
+        {% if post.venue %}, {{ post.venue }}{% endif %}
+        {% if post.excerpt %} &mdash; {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>

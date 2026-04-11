@@ -57,6 +57,10 @@ body {
   padding-bottom: 0.65rem;
 }
 
+.masthead__menu-item--lg {
+  display: none !important;
+}
+
 .greedy-nav {
   background: transparent;
 }
@@ -70,33 +74,42 @@ body {
 }
 
 .sidebar.sticky {
-  top: 1.5rem;
+  top: 1.25rem;
   overflow: visible;
 }
 
 .author__avatar {
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .author__avatar img {
   border-radius: 20px;
   border: 4px solid #fff;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
   object-fit: cover;
 }
 
 .author__content,
 .author__urls-wrapper {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
-  margin-bottom: 0.9rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: 0.55rem;
 }
 
 .author__name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.35rem 0;
+}
+
+.author__urls {
+  padding-left: 0;
+}
+
+.author__urls li {
+  margin-bottom: 0.35rem;
 }
 
 .page__title {
@@ -133,4 +146,30 @@ body {
 
 .archive__item-title {
   font-size: 1.1rem;
+}
+
+.compact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.compact-list__item {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.compact-list__item:last-child {
+  border-bottom: 0;
+}
+
+.compact-list__title {
+  font-weight: 600;
+  margin-bottom: 0.12rem;
+}
+
+.compact-list__meta {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #5b6b68;
 }
