@@ -7,26 +7,43 @@ author_profile: true
 
 {% include base_path %}
 
-<h2>Preprints</h2>
 {% assign preprints = site.publications | where: "category", "preprints" | sort: "date" | reverse %}
-<ol>
+{% assign journals = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
+{% assign confs = site.publications | where: "category", "conferences" | sort: "date" | reverse %}
+
+{% assign total_pubs = preprints.size | plus: journals.size | plus: confs.size %}
+{% assign journal_start = total_pubs | minus: preprints.size %}
+{% assign conf_start = journal_start | minus: journals.size %}
+
+<h2>Preprints</h2>
+{% if preprints.size > 0 %}
+<ol reversed start="{{ total_pubs }}">
   {% for p in preprints %}
     {% include pub_compact_li.html p=p %}
   {% endfor %}
 </ol>
+{% else %}
+<p>No preprints listed yet.</p>
+{% endif %}
 
 <h2>Journal Articles</h2>
-{% assign journals = site.publications | where: "category", "manuscripts" | sort: "date" | reverse %}
-<ol>
+{% if journals.size > 0 %}
+<ol reversed start="{{ journal_start }}">
   {% for p in journals %}
     {% include pub_compact_li.html p=p %}
   {% endfor %}
 </ol>
+{% else %}
+<p>No journal articles listed yet.</p>
+{% endif %}
 
 <h2>Conference Papers</h2>
-{% assign confs = site.publications | where: "category", "conferences" | sort: "date" | reverse %}
-<ol>
+{% if confs.size > 0 %}
+<ol reversed start="{{ conf_start }}">
   {% for p in confs %}
     {% include pub_compact_li.html p=p %}
   {% endfor %}
 </ol>
+{% else %}
+<p>No conference papers listed yet.</p>
+{% endif %}
