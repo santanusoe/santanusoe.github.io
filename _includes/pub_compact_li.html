@@ -8,6 +8,8 @@
   {% if include.p.category == "preprints" %}
     {% if include.p.arxiv_id %}
       <em>arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
+    {% elsif include.p.venue %}
+      <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
     {% else %}
       {{ include.p.date | date: "%Y" }}.<br/>
     {% endif %}
@@ -19,17 +21,21 @@
     {% endif %}
   {% endif %}
 
-  {% if include.p.category == "preprints" %}
-    {% if include.p.paperurl %}
-      [<a href="{{ include.p.paperurl }}">arXiv</a>]
-    {% endif %}
-  {% else %}
-    {% if include.p.paperurl %}
-      [<a href="{{ include.p.paperurl }}">arXiv</a>]
-    {% endif %}
+  {% if include.p.paperurl %}
+    [<a href="{{ include.p.paperurl }}">
+      {% if include.p.link_label %}
+        {{ include.p.link_label }}
+      {% elsif include.p.arxiv_id %}
+        arXiv
+      {% else %}
+        Paper
+      {% endif %}
+    </a>]
+  {% endif %}
 
+  {% if include.p.category != "preprints" %}
     {% if include.p.doi %}
-      &nbsp;[<a href="https://doi.org/{{ include.p.doi }}">DOI</a>]
+      &nbsp;[<a href="{{ include.p.doi }}">DOI</a>]
     {% elsif include.p.doiurl %}
       &nbsp;[<a href="{{ include.p.doiurl }}">DOI</a>]
     {% endif %}
