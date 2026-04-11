@@ -1,0 +1,130 @@
+/* ==========================================================================
+   FRIENDLY STYLE REFRESH
+   ========================================================================== */
+
+:root {
+  --friendly-surface: color-mix(in srgb, var(--global-bg-color) 90%, #f5fbff 10%);
+  --friendly-surface-elevated: color-mix(in srgb, var(--global-bg-color) 82%, #edf7ff 18%);
+  --friendly-shadow: 0 10px 30px rgba(24, 39, 75, 0.08);
+  --friendly-shadow-soft: 0 4px 16px rgba(24, 39, 75, 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--global-base-color) 9%, transparent) 0%, transparent 35%),
+              radial-gradient(circle at 100% 0%, color-mix(in srgb, #63b3ed 10%, transparent) 0%, transparent 30%),
+              var(--global-bg-color);
+  line-height: 1.75;
+}
+
+.page {
+  padding-top: 1rem;
+}
+
+.page__content,
+.archive,
+.sidebar,
+.author__urls-wrapper button {
+  font-size: 1.02rem;
+}
+
+.masthead {
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--global-bg-color) 85%, white 15%);
+  border-bottom: 1px solid color-mix(in srgb, var(--global-border-color) 70%, white 30%);
+  box-shadow: var(--friendly-shadow-soft);
+}
+
+.greedy-nav {
+  background: transparent;
+}
+
+.greedy-nav a,
+.masthead__menu-item a {
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.greedy-nav a:hover,
+.masthead__menu-item a:hover {
+  background: color-mix(in srgb, var(--global-base-color) 15%, transparent);
+}
+
+.page__hero {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--friendly-shadow);
+}
+
+.sidebar {
+  background: var(--friendly-surface);
+  border: 1px solid var(--global-border-color);
+  border-radius: 18px;
+  box-shadow: var(--friendly-shadow-soft);
+  padding: 1rem;
+}
+
+.author__avatar img {
+  border-radius: 18px;
+  border: 3px solid color-mix(in srgb, var(--global-base-color) 18%, white 82%);
+  box-shadow: var(--friendly-shadow-soft);
+}
+
+.author__urls a,
+.btn,
+.notice {
+  border-radius: 12px;
+}
+
+.archive__item,
+.list__item,
+.page__content > .notice,
+.page__content > .archive__item {
+  background: var(--friendly-surface-elevated);
+  border: 1px solid var(--global-border-color);
+  border-radius: 16px;
+  box-shadow: var(--friendly-shadow-soft);
+  padding: 1rem 1.1rem;
+}
+
+.archive__item-title,
+.page__title,
+.author__name {
+  letter-spacing: 0.01em;
+}
+
+.archive__item-excerpt p,
+.page__content p {
+  color: color-mix(in srgb, var(--global-text-color) 90%, #243b53 10%);
+}
+
+.btn,
+.pagination--pager,
+.page__footer-follow a {
+  background: color-mix(in srgb, var(--global-base-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--global-base-color) 30%, transparent);
+  color: var(--global-text-color);
+}
+
+.btn:hover,
+.pagination--pager:hover,
+.page__footer-follow a:hover {
+  background: color-mix(in srgb, var(--global-base-color) 22%, transparent);
+  text-decoration: none;
+}
+
+.footer,
+.page__footer {
+  border-top: 1px solid var(--global-border-color);
+  background: color-mix(in srgb, var(--global-footer-bg-color) 80%, white 20%);
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    margin-top: 1rem;
+  }
+}
