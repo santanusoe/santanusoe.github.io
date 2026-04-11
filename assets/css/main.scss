@@ -35,8 +35,6 @@
     "vendor/font-awesome/brands"
 ;
 
-/* polished academic refresh */
-
 html {
   font-size: 17px;
 }
@@ -50,21 +48,20 @@ body {
 }
 
 .masthead {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 
 .masthead__inner-wrap {
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
 }
 
-.site-title {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.greedy-nav {
+  background: transparent;
 }
 
-.greedy-nav a {
+.greedy-nav .visible-links a {
   font-weight: 600;
 }
 
@@ -72,10 +69,20 @@ body {
   height: 2px;
 }
 
+.sidebar.sticky {
+  top: 1.5rem;
+  overflow: visible;
+}
+
+.author__avatar {
+  margin-bottom: 1rem;
+}
+
 .author__avatar img {
-  border-radius: 18px;
+  border-radius: 20px;
   border: 4px solid #fff;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  object-fit: cover;
 }
 
 .author__content,
@@ -83,14 +90,18 @@ body {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 16px;
-  padding: 1rem;
+  padding: 1rem 1.1rem;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+  margin-bottom: 0.9rem;
+}
+
+.author__name {
+  font-size: 1.2rem;
 }
 
 .page__title {
-  font-size: 2.15rem;
+  font-size: 2.2rem;
   letter-spacing: -0.02em;
-  margin-bottom: 0.4rem;
 }
 
 .page__content p,
@@ -100,26 +111,9 @@ body {
 }
 
 .page__content h2 {
-  margin-top: 2rem;
-  padding-bottom: 0.3rem;
+  margin-top: 1.9rem;
+  padding-bottom: 0.35rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.archive__item,
-.pub-item {
-  margin-bottom: 1.1rem;
-}
-
-.pub-item strong {
-  font-size: 1.02rem;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .notice--primary,
@@ -129,8 +123,14 @@ a:hover {
   border-radius: 16px;
 }
 
-.btn,
-.btn--primary {
-  border-radius: 999px;
-  font-weight: 600;
+.archive__item {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+}
+
+.archive__item-title {
+  font-size: 1.1rem;
 }
