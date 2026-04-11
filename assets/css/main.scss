@@ -1,13 +1,6 @@
 ---
 ---
 
-/*
- * This file controls what is imported from /_sass
- *
- * Note that the files are processed in the order they are imported, so they are partly
-   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
- */
-
 @import
     "vendor/breakpoint/breakpoint",
 
@@ -41,3 +34,103 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* polished academic refresh */
+
+html {
+  font-size: 17px;
+}
+
+body {
+  font-feature-settings: "kern";
+}
+
+.page {
+  max-width: 1180px;
+}
+
+.masthead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.masthead__inner-wrap {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.site-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.greedy-nav a {
+  font-weight: 600;
+}
+
+.greedy-nav .visible-links a:before {
+  height: 2px;
+}
+
+.author__avatar img {
+  border-radius: 18px;
+  border: 4px solid #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+}
+
+.author__content,
+.author__urls-wrapper {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.page__title {
+  font-size: 2.15rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.page__content p,
+.page__content li {
+  font-size: 1.03rem;
+  line-height: 1.82;
+}
+
+.page__content h2 {
+  margin-top: 2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.archive__item,
+.pub-item {
+  margin-bottom: 1.1rem;
+}
+
+.pub-item strong {
+  font-size: 1.02rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.notice--primary,
+.notice--info,
+.notice--success,
+.notice--warning {
+  border-radius: 16px;
+}
+
+.btn,
+.btn--primary {
+  border-radius: 999px;
+  font-weight: 600;
+}
