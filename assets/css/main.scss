@@ -68,11 +68,12 @@ body {
 }
 
 .site-nav-links {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem 0.6rem;
+  gap: 0.45rem 1.2rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -86,23 +87,24 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.25rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
+  min-height: auto;
+  padding: 0.2rem 0;
+  border-radius: 0;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.86);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
 }
 
 .site-nav-links__item.selected a {
-  border-color: rgba(0, 0, 0, 0.18);
+  border-bottom-color: currentColor;
 }
 
 .site-nav-links__toggle a {
-  min-width: 2.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  min-width: auto;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 .sidebar.sticky {
@@ -251,14 +253,23 @@ body {
   }
 
   .site-nav-links {
-    gap: 0.35rem 0.4rem;
-    justify-content: center;
+    flex-direction: column !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.25rem;
   }
 
   .site-nav-links__item a {
-    min-height: 2.1rem;
-    padding: 0.38rem 0.72rem;
-    font-size: 0.94rem;
+    min-height: 2rem;
+    padding: 0.1rem 0;
+    font-size: 0.98rem;
+    border-bottom: 0;
+  }
+
+  .site-nav-links__item.selected a {
+    border-bottom: 0;
+    text-decoration: underline;
+    text-underline-offset: 0.18rem;
   }
 
   .page {
@@ -309,13 +320,7 @@ body {
     font-size: 1.65rem;
   }
 
-  .site-nav-links {
-    gap: 0.3rem;
-  }
-
   .site-nav-links__item a {
-    min-height: 2rem;
-    padding: 0.34rem 0.58rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
