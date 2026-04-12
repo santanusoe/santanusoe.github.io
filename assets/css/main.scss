@@ -173,3 +173,104 @@ body {
   line-height: 1.55;
   color: #5b6b68;
 }
+
+@media (max-width: 1060px) {
+  html {
+    font-size: 16px;
+  }
+
+  .page {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .page__title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar.sticky {
+    position: relative;
+    top: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  .author__avatar img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+  }
+
+  .archive__item {
+    padding: 0.9rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15.5px;
+  }
+
+  .masthead__inner-wrap {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .greedy-nav .visible-links a {
+    font-size: 0.98rem;
+  }
+
+  .page {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .page__title {
+    font-size: 1.8rem;
+  }
+
+  .page__content p,
+  .page__content li,
+  .compact-list__meta {
+    line-height: 1.7;
+  }
+
+  .archive__item {
+    padding: 0.85rem 0.9rem;
+    border-radius: 12px;
+  }
+
+  .compact-list__item {
+    padding: 0.6rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+
+  .page {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .author__avatar img {
+    max-width: 170px;
+    border-radius: 16px;
+  }
+
+  .author__name {
+    font-size: 1.05rem;
+  }
+
+  .page__title {
+    font-size: 1.65rem;
+  }
+
+  .greedy-nav .visible-links a {
+    font-size: 0.95rem;
+  }
+}
