@@ -17,17 +17,6 @@
 
 <script>
   (() => {
-    const markReady = () => {
-      document.body.classList.add('page-ready');
-      document.body.classList.remove('page-leaving');
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', markReady, { once: true });
-    } else {
-      markReady();
-    }
-
     const prefetched = new Set();
 
     const isInternalNavigation = (url) =>
@@ -67,36 +56,6 @@
       (event) => queuePrefetch(event.target.closest('a[href]')),
       { passive: true }
     );
-
-    document.addEventListener('click', (event) => {
-      const anchor = event.target.closest('a[href]');
-      if (!anchor) return;
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        anchor.target === '_blank' ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      ) {
-        return;
-      }
-
-      try {
-        const url = new URL(anchor.href, window.location.href);
-        if (!isInternalNavigation(url)) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('page-leaving');
-        window.setTimeout(() => {
-          window.location.href = url.href;
-        }, 170);
-      } catch (_) {}
-    });
-
-    window.addEventListener('pageshow', markReady);
   })();
 </script>
 
