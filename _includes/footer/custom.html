@@ -2,15 +2,102 @@
 
 <a href="/sitemap/">Sitemap</a>
 
-<!-- Support for MatJax -->
+{% if page.use_math %}
 <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+{% endif %}
 
-<!-- Support for Mermaid -->
+{% if page.mermaid %}
 <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({startOnLoad:true, theme:'default'});
-    await mermaid.run({querySelector:'code.language-mermaid'});
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  await mermaid.run({ querySelector: 'code.language-mermaid' });
+</script>
+{% endif %}
+
+<script>
+  (() => {
+    const markReady = () => {
+      document.body.classList.add('page-ready');
+      document.body.classList.remove('page-leaving');
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', markReady, { once: true });
+    } else {
+      markReady();
+    }
+
+    const prefetched = new Set();
+
+    const isInternalNavigation = (url) =>
+      url.origin === window.location.origin &&
+      !url.hash &&
+      !url.href.startsWith('mailto:') &&
+      !url.href.startsWith('tel:');
+
+    const prefetchPage = (href) => {
+      if (!href || prefetched.has(href)) return;
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'document';
+      link.href = href;
+      document.head.appendChild(link);
+      prefetched.add(href);
+    };
+
+    const queuePrefetch = (anchor) => {
+      if (!anchor) return;
+      try {
+        const url = new URL(anchor.href, window.location.href);
+        if (!isInternalNavigation(url)) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+        prefetchPage(url.href);
+      } catch (_) {}
+    };
+
+    document.addEventListener(
+      'mouseover',
+      (event) => queuePrefetch(event.target.closest('a[href]')),
+      { passive: true }
+    );
+
+    document.addEventListener(
+      'touchstart',
+      (event) => queuePrefetch(event.target.closest('a[href]')),
+      { passive: true }
+    );
+
+    document.addEventListener('click', (event) => {
+      const anchor = event.target.closest('a[href]');
+      if (!anchor) return;
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        anchor.target === '_blank' ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      try {
+        const url = new URL(anchor.href, window.location.href);
+        if (!isInternalNavigation(url)) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('page-leaving');
+        window.setTimeout(() => {
+          window.location.href = url.href;
+        }, 170);
+      } catch (_) {}
+    });
+
+    window.addEventListener('pageshow', markReady);
+  })();
 </script>
 
 <!-- end custom footer snippets -->
