@@ -7,6 +7,12 @@
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+<link rel="prefetch" href="{{ base_path }}/">
+<link rel="prefetch" href="{{ base_path }}/publications/">
+<link rel="prefetch" href="{{ base_path }}/teaching/">
+<link rel="prefetch" href="{{ base_path }}/talks/">
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
