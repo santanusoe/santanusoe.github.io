@@ -15,15 +15,6 @@
 <meta name="theme-color" content="#ffffff"/>
 
 <style>
-  .js body {
-    opacity: 0;
-  }
-
-  .js body.page-ready {
-    opacity: 1;
-    transition: opacity 0.22s ease;
-  }
-
   .page,
   .masthead,
   .page__footer {
@@ -42,7 +33,12 @@
 
   .site-nav-links__item a {
     transform: translateY(0);
-    transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      background-color 0.16s ease,
+      border-color 0.16s ease,
+      color 0.16s ease,
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
   }
 
   .site-nav-links__item a:hover,
@@ -52,8 +48,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .js body,
-    .js body.page-ready,
     .page,
     .masthead,
     .page__footer,
