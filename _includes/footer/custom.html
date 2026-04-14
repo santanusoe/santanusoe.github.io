@@ -18,18 +18,13 @@
 <script>
   (() => {
     const THEME_STORAGE_KEY = 'theme-preference';
-    const validThemes = ['auto', 'dawn', 'day', 'dusk', 'night'];
+    const validThemes = ['day', 'night'];
     const themeIcons = {
-      auto: 'fa-circle-half-stroke',
-      dawn: 'fa-cloud-sun',
       day: 'fa-sun',
-      dusk: 'fa-cloud',
       night: 'fa-moon'
     };
     const themeColors = {
-      dawn: '#fbf2e8',
       day: '#fafaf8',
-      dusk: '#1b2231',
       night: '#0f151a'
     };
 
@@ -39,17 +34,6 @@
     const themeLabel = document.getElementById('theme-label');
     const prefetched = new Set();
 
-    const getAutoTheme = () => {
-      const hour = new Date().getHours();
-      if (hour >= 5 && hour < 8) return 'dawn';
-      if (hour >= 8 && hour < 17) return 'day';
-      if (hour >= 17 && hour < 20) return 'dusk';
-      return 'night';
-    };
-
-    const resolveTheme = (preference) => preference === 'auto' ? getAutoTheme() : preference;
-    const pretty = (preference) => preference.charAt(0).toUpperCase() + preference.slice(1);
-
     const updateThemeMeta = (theme) => {
       const metaTheme = document.querySelector('meta[name="theme-color"]');
       if (metaTheme) {
@@ -57,54 +41,47 @@
       }
     };
 
-    const updateThemeButton = (preference) => {
+    const updateThemeButton = (theme) => {
       if (!themeButton || !themeIcon || !themeLabel) return;
-      themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
-      themeLabel.textContent = pretty(preference);
-      const label = 'Theme: ' + pretty(preference) + '. Click to change theme';
+      themeIcon.className = 'fa-solid ' + (themeIcons[theme] || themeIcons.day);
+      themeLabel.textContent = theme === 'night' ? 'Night' : 'Day';
+      const nextTheme = theme === 'night' ? 'day' : 'night';
+      const label = 'Theme: ' + (theme === 'night' ? 'Night' : 'Day') + '. Click to change to ' + (nextTheme === 'night' ? 'Night' : 'Day');
       themeButton.setAttribute('aria-label', label);
       themeButton.setAttribute('title', label);
     };
 
-    const applyTheme = (preference, persist = true) => {
-      const normalizedPreference = validThemes.includes(preference) ? preference : 'auto';
-      const resolvedTheme = resolveTheme(normalizedPreference);
-      root.dataset.themePreference = normalizedPreference;
-      root.dataset.theme = resolvedTheme;
-      updateThemeMeta(resolvedTheme);
-      updateThemeButton(normalizedPreference);
+    const applyTheme = (theme, persist = true) => {
+      const normalizedTheme = validThemes.includes(theme) ? theme : 'day';
+      root.dataset.themePreference = normalizedTheme;
+      root.dataset.theme = normalizedTheme;
+      updateThemeMeta(normalizedTheme);
+      updateThemeButton(normalizedTheme);
       if (persist) {
         try {
-          window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference);
+          window.localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
         } catch (_) {}
       }
     };
 
-    const readPreference = () => {
+    const readTheme = () => {
       const current = root.dataset.themePreference;
       if (current && validThemes.includes(current)) return current;
       try {
-        const savedPreference = window.localStorage.getItem(THEME_STORAGE_KEY);
-        if (savedPreference && validThemes.includes(savedPreference)) return savedPreference;
+        const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme && validThemes.includes(savedTheme)) return savedTheme;
       } catch (_) {}
-      return 'auto';
+      return 'day';
     };
 
     if (themeButton) {
       themeButton.addEventListener('click', () => {
-        const current = readPreference();
-        const nextIndex = (validThemes.indexOf(current) + 1) % validThemes.length;
-        applyTheme(validThemes[nextIndex]);
+        const current = readTheme();
+        applyTheme(current === 'night' ? 'day' : 'night');
       });
     }
 
-    applyTheme(readPreference(), false);
-
-    window.setInterval(() => {
-      if (readPreference() === 'auto') {
-        applyTheme('auto', false);
-      }
-    }, 60000);
+    applyTheme(readTheme(), false);
 
     const isInternalNavigation = (url) =>
       url.origin === window.location.origin &&
