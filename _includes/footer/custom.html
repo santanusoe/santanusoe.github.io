@@ -18,11 +18,12 @@
 <script>
   (() => {
     const THEME_STORAGE_KEY = 'theme-preference';
+    const validThemes = ['auto', 'dawn', 'day', 'dusk', 'night'];
     const themeIcons = {
       auto: 'fa-circle-half-stroke',
-      dawn: 'fa-sun',
+      dawn: 'fa-cloud-sun',
       day: 'fa-sun',
-      dusk: 'fa-cloud-sun',
+      dusk: 'fa-cloud',
       night: 'fa-moon'
     };
     const themeColors = {
@@ -31,9 +32,9 @@
       dusk: '#1b2231',
       night: '#0f151a'
     };
-    const validThemes = ['auto', 'dawn', 'day', 'dusk', 'night'];
+
     const root = document.documentElement;
-    const themeSelect = document.getElementById('theme-select');
+    const themeButton = document.querySelector('.theme-switcher__button');
     const themeIcon = document.getElementById('theme-icon');
     const prefetched = new Set();
 
@@ -54,13 +55,12 @@
       }
     };
 
-    const updateThemeUI = (preference) => {
-      if (themeSelect) {
-        themeSelect.value = preference;
-      }
-      if (themeIcon) {
-        themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
-      }
+    const updateThemeButton = (preference) => {
+      if (!themeButton || !themeIcon) return;
+      themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
+      const label = 'Theme: ' + preference.charAt(0).toUpperCase() + preference.slice(1) + '. Click to change theme';
+      themeButton.setAttribute('aria-label', label);
+      themeButton.setAttribute('title', label);
     };
 
     const applyTheme = (preference, persist = true) => {
@@ -69,7 +69,7 @@
       root.dataset.themePreference = normalizedPreference;
       root.dataset.theme = resolvedTheme;
       updateThemeMeta(resolvedTheme);
-      updateThemeUI(normalizedPreference);
+      updateThemeButton(normalizedPreference);
       if (persist) {
         try {
           window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference);
@@ -86,6 +86,22 @@
       } catch (_) {}
       return 'auto';
     };
+
+    if (themeButton) {
+      themeButton.addEventListener('click', () => {
+        const current = readPreference();
+        const nextIndex = (validThemes.indexOf(current) + 1) % validThemes.length;
+        applyTheme(validThemes[nextIndex]);
+      });
+    }
+
+    applyTheme(readPreference(), false);
+
+    window.setInterval(() => {
+      if (readPreference() === 'auto') {
+        applyTheme('auto', false);
+      }
+    }, 60000);
 
     const isInternalNavigation = (url) =>
       url.origin === window.location.origin &&
@@ -112,20 +128,6 @@
         prefetchPage(url.href);
       } catch (_) {}
     };
-
-    applyTheme(readPreference(), false);
-
-    if (themeSelect) {
-      themeSelect.addEventListener('change', (event) => {
-        applyTheme(event.target.value || 'auto');
-      });
-    }
-
-    window.setInterval(() => {
-      if (readPreference() === 'auto') {
-        applyTheme('auto', false);
-      }
-    }, 60000);
 
     document.addEventListener('mouseover', (event) => queuePrefetch(event.target.closest('a[href]')), { passive: true });
     document.addEventListener('touchstart', (event) => queuePrefetch(event.target.closest('a[href]')), { passive: true });

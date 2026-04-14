@@ -214,65 +214,42 @@
   html[data-theme] .page__footer footer { background: var(--footer-bg); color: var(--footer-text); }
   html[data-theme] .page__footer a { color: var(--link-color); }
 
-  .theme-switcher__control {
+  .theme-switcher__button {
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
-    padding: .28rem .58rem;
+    justify-content: center;
+    width: 2.5rem;
+    min-height: 2.2rem;
+    padding: .3rem;
     border-radius: 10px;
     border: 1px solid var(--card-border);
     background: var(--control-bg);
     color: var(--nav-text);
     cursor: pointer;
-  }
-
-  .theme-switcher__label {
-    font-size: .95rem;
-    font-weight: 600;
-    color: var(--nav-text);
-  }
-
-  .theme-switcher__select {
-    border: 0;
-    background: transparent;
-    color: var(--nav-text);
     font: inherit;
-    font-weight: 600;
-    padding-right: .15rem;
-    min-width: 4.6rem;
-    cursor: pointer;
   }
 
-  .theme-switcher__select:focus {
+  .theme-switcher__button:hover,
+  .theme-switcher__button:focus-visible {
+    background: var(--nav-hover-bg);
+    border-color: var(--card-border);
     outline: none;
-  }
-
-  .theme-switcher__select option {
-    color: #111;
-    background: #fff;
   }
 
   @media (max-width: 768px) {
     .site-nav-links__toggle { display: block !important; }
-    .theme-switcher {
+    .theme-switcher { width: 100%; }
+    .theme-switcher__button {
       width: 100%;
-    }
-
-    .theme-switcher__control {
-      width: 100%;
-      justify-content: center;
       min-height: 2.55rem;
-      padding: .42rem .72rem;
       border-radius: 12px;
+      background: var(--control-bg);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .site-nav-links__item a,
-    .theme-switcher__control,
-    .theme-switcher__select {
-      transition: none !important;
-    }
+    .theme-switcher__button { transition: none !important; }
   }
 </style>
 

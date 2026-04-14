@@ -15,17 +15,14 @@
             </li>
           {% endfor %}
           <li id="theme-toggle" class="site-nav-links__item site-nav-links__toggle theme-switcher">
-            <label class="theme-switcher__control" for="theme-select">
+            <button
+              type="button"
+              class="theme-switcher__button"
+              aria-label="Theme: Auto. Click to change theme"
+              title="Theme: Auto"
+            >
               <i id="theme-icon" class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-              <span class="theme-switcher__label">Theme</span>
-              <select id="theme-select" class="theme-switcher__select" aria-label="Choose theme">
-                <option value="auto">Auto</option>
-                <option value="dawn">Dawn</option>
-                <option value="day">Day</option>
-                <option value="dusk">Dusk</option>
-                <option value="night">Night</option>
-              </select>
-            </label>
+            </button>
           </li>
         </ul>
       </nav>
