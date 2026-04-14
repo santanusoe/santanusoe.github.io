@@ -14,8 +14,41 @@
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
-          <li id="theme-toggle" class="site-nav-links__item site-nav-links__toggle">
-            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+          <li id="theme-toggle" class="site-nav-links__item site-nav-links__toggle theme-switcher">
+            <button
+              type="button"
+              class="theme-switcher__button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="theme-menu"
+            >
+              <i id="theme-icon" class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+              <span class="theme-switcher__label">Theme</span>
+              <span id="theme-value" class="theme-switcher__value">Auto</span>
+              <i class="fa-solid fa-chevron-down theme-switcher__caret" aria-hidden="true"></i>
+            </button>
+            <div id="theme-menu" class="theme-switcher__menu" role="menu" hidden>
+              <button type="button" class="theme-switcher__option" data-theme-choice="auto" role="menuitemradio" aria-checked="true">
+                <span class="theme-switcher__option-label">Auto</span>
+                <span class="theme-switcher__option-meta">Match local time</span>
+              </button>
+              <button type="button" class="theme-switcher__option" data-theme-choice="dawn" role="menuitemradio" aria-checked="false">
+                <span class="theme-switcher__option-label">Dawn</span>
+                <span class="theme-switcher__option-meta">Early morning</span>
+              </button>
+              <button type="button" class="theme-switcher__option" data-theme-choice="day" role="menuitemradio" aria-checked="false">
+                <span class="theme-switcher__option-label">Day</span>
+                <span class="theme-switcher__option-meta">Bright and clean</span>
+              </button>
+              <button type="button" class="theme-switcher__option" data-theme-choice="dusk" role="menuitemradio" aria-checked="false">
+                <span class="theme-switcher__option-label">Dusk</span>
+                <span class="theme-switcher__option-meta">Warm twilight</span>
+              </button>
+              <button type="button" class="theme-switcher__option" data-theme-choice="night" role="menuitemradio" aria-checked="false">
+                <span class="theme-switcher__option-label">Night</span>
+                <span class="theme-switcher__option-meta">Dark focus mode</span>
+              </button>
+            </div>
           </li>
         </ul>
       </nav>

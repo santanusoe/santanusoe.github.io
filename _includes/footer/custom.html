@@ -17,13 +17,89 @@
 
 <script>
   (() => {
+    const THEME_STORAGE_KEY = 'theme-preference';
+    const themeLabels = { auto: 'Auto', dawn: 'Dawn', day: 'Day', dusk: 'Dusk', night: 'Night' };
+    const themeIcons = { auto: 'fa-circle-half-stroke', dawn: 'fa-sun', day: 'fa-sun', dusk: 'fa-cloud-sun', night: 'fa-moon' };
+    const themeColors = { dawn: '#fbf2e8', day: '#fafaf8', dusk: '#1b2231', night: '#0f151a' };
+
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeButton = themeToggle ? themeToggle.querySelector('.theme-switcher__button') : null;
+    const themeMenu = themeToggle ? themeToggle.querySelector('.theme-switcher__menu') : null;
+    const themeValue = document.getElementById('theme-value');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeOptions = themeMenu ? Array.from(themeMenu.querySelectorAll('[data-theme-choice]')) : [];
     const prefetched = new Set();
 
+    const getAutoTheme = () => {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 8) return 'dawn';
+      if (hour >= 8 && hour < 17) return 'day';
+      if (hour >= 17 && hour < 20) return 'dusk';
+      return 'night';
+    };
+
+    const resolveTheme = (preference) => preference === 'auto' ? getAutoTheme() : preference;
+
+    const readPreference = () => {
+      const preference = root.dataset.themePreference;
+      if (preference && themeLabels[preference]) return preference;
+      try {
+        const savedPreference = window.localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedPreference && themeLabels[savedPreference]) return savedPreference;
+      } catch (_) {}
+      return 'auto';
+    };
+
+    const updateThemeMeta = (theme) => {
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', themeColors[theme] || themeColors.day);
+      }
+    };
+
+    const updateThemeUI = (preference, resolvedTheme) => {
+      if (themeValue) themeValue.textContent = themeLabels[preference] || themeLabels.auto;
+      if (themeIcon) {
+        const iconClass = themeIcons[preference] || themeIcons.auto;
+        themeIcon.className = 'fa-solid ' + iconClass;
+        themeIcon.setAttribute('title', preference === 'auto' ? 'Theme: Auto (' + (themeLabels[resolvedTheme] || resolvedTheme) + ')' : 'Theme: ' + (themeLabels[preference] || preference));
+      }
+      themeOptions.forEach((option) => {
+        const isActive = option.dataset.themeChoice === preference;
+        option.classList.toggle('is-active', isActive);
+        option.setAttribute('aria-checked', isActive ? 'true' : 'false');
+      });
+    };
+
+    const applyTheme = (preference, persist = true) => {
+      const normalizedPreference = themeLabels[preference] ? preference : 'auto';
+      const resolvedTheme = resolveTheme(normalizedPreference);
+      root.dataset.themePreference = normalizedPreference;
+      root.dataset.theme = resolvedTheme;
+      updateThemeMeta(resolvedTheme);
+      updateThemeUI(normalizedPreference, resolvedTheme);
+      if (persist) {
+        try { window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference); } catch (_) {}
+      }
+    };
+
+    const openThemeMenu = () => {
+      if (!themeToggle || !themeButton || !themeMenu) return;
+      themeToggle.classList.add('is-open');
+      themeMenu.hidden = false;
+      themeButton.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeThemeMenu = () => {
+      if (!themeToggle || !themeButton || !themeMenu) return;
+      themeToggle.classList.remove('is-open');
+      themeMenu.hidden = true;
+      themeButton.setAttribute('aria-expanded', 'false');
+    };
+
     const isInternalNavigation = (url) =>
-      url.origin === window.location.origin &&
-      !url.hash &&
-      !url.href.startsWith('mailto:') &&
-      !url.href.startsWith('tel:');
+      url.origin === window.location.origin && !url.hash && !url.href.startsWith('mailto:') && !url.href.startsWith('tel:');
 
     const prefetchPage = (href) => {
       if (!href || prefetched.has(href)) return;
@@ -45,17 +121,35 @@
       } catch (_) {}
     };
 
-    document.addEventListener(
-      'mouseover',
-      (event) => queuePrefetch(event.target.closest('a[href]')),
-      { passive: true }
-    );
+    applyTheme(readPreference(), false);
 
-    document.addEventListener(
-      'touchstart',
-      (event) => queuePrefetch(event.target.closest('a[href]')),
-      { passive: true }
-    );
+    if (themeButton && themeMenu) {
+      themeButton.addEventListener('click', () => { themeMenu.hidden ? openThemeMenu() : closeThemeMenu(); });
+      themeOptions.forEach((option) => {
+        option.addEventListener('click', () => {
+          applyTheme(option.dataset.themeChoice || 'auto');
+          closeThemeMenu();
+          themeButton.focus();
+        });
+      });
+      document.addEventListener('click', (event) => {
+        if (!themeToggle.contains(event.target)) closeThemeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeThemeMenu();
+          themeButton.focus();
+        }
+      });
+    }
+
+    window.setInterval(() => {
+      if (readPreference() === 'auto') applyTheme('auto', false);
+    }, 60000);
+
+    document.addEventListener('mouseover', (event) => queuePrefetch(event.target.closest('a[href]')), { passive: true });
+    document.addEventListener('touchstart', (event) => queuePrefetch(event.target.closest('a[href]')), { passive: true });
+    document.addEventListener('focusin', (event) => queuePrefetch(event.target.closest('a[href]')));
   })();
 </script>
 
