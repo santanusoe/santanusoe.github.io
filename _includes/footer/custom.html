@@ -36,6 +36,7 @@
     const root = document.documentElement;
     const themeButton = document.querySelector('.theme-switcher__button');
     const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
     const prefetched = new Set();
 
     const getAutoTheme = () => {
@@ -47,6 +48,7 @@
     };
 
     const resolveTheme = (preference) => preference === 'auto' ? getAutoTheme() : preference;
+    const pretty = (preference) => preference.charAt(0).toUpperCase() + preference.slice(1);
 
     const updateThemeMeta = (theme) => {
       const metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -56,9 +58,10 @@
     };
 
     const updateThemeButton = (preference) => {
-      if (!themeButton || !themeIcon) return;
+      if (!themeButton || !themeIcon || !themeLabel) return;
       themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
-      const label = 'Theme: ' + preference.charAt(0).toUpperCase() + preference.slice(1) + '. Click to change theme';
+      themeLabel.textContent = pretty(preference);
+      const label = 'Theme: ' + pretty(preference) + '. Click to change theme';
       themeButton.setAttribute('aria-label', label);
       themeButton.setAttribute('title', label);
     };
