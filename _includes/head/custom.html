@@ -214,7 +214,7 @@
   html[data-theme] .page__footer a { color: var(--link-color); }
 
   .theme-switcher__button {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
     gap: .42rem;
@@ -238,18 +238,43 @@
   }
 
   .theme-switcher__label {
+    display: inline-block !important;
     font-size: .92rem;
     color: var(--nav-text);
   }
 
+  .site-nav-links__toggle.theme-switcher {
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  .greedy-nav .site-nav-links__toggle,
+  .greedy-nav .theme-switcher,
+  .greedy-nav .theme-switcher__button {
+    display: inline-flex !important;
+  }
+
   @media (max-width: 768px) {
-    .site-nav-links__toggle { display: block !important; }
-    .theme-switcher { width: 100%; }
-    .theme-switcher__button {
+    .site-nav-links__toggle,
+    .site-nav-links__toggle.theme-switcher,
+    .greedy-nav .site-nav-links__toggle,
+    .greedy-nav .theme-switcher {
+      display: block !important;
+      width: 100%;
+    }
+
+    .theme-switcher {
+      width: 100%;
+    }
+
+    .theme-switcher__button,
+    .greedy-nav .theme-switcher__button {
+      display: inline-flex !important;
       width: 100%;
       min-height: 2.55rem;
       border-radius: 12px;
       background: var(--control-bg);
+      justify-content: center;
     }
   }
 
