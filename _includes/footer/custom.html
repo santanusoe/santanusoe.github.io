@@ -19,6 +19,13 @@
   (() => {
     const THEME_STORAGE_KEY = 'theme-preference';
     const validThemes = ['auto', 'dawn', 'day', 'dusk', 'night'];
+    const themeIcons = {
+      auto: 'fa-circle-half-stroke',
+      dawn: 'fa-cloud-sun',
+      day: 'fa-sun',
+      dusk: 'fa-cloud',
+      night: 'fa-moon'
+    };
     const themeColors = {
       dawn: '#fbf2e8',
       day: '#fafaf8',
@@ -27,8 +34,9 @@
     };
 
     const root = document.documentElement;
-    const themeLinks = Array.from(document.querySelectorAll('.theme-choice-link'));
-    const themeItems = Array.from(document.querySelectorAll('[data-theme-choice-item]'));
+    const themeButton = document.querySelector('.theme-switcher__button');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
     const prefetched = new Set();
 
     const getAutoTheme = () => {
@@ -49,16 +57,13 @@
       }
     };
 
-    const updateThemeUI = (preference) => {
-      themeItems.forEach((item) => {
-        const isActive = item.dataset.themeChoiceItem === preference;
-        item.classList.toggle('selected', isActive);
-      });
-      themeLinks.forEach((link) => {
-        const isActive = link.dataset.themeChoice === preference;
-        link.setAttribute('aria-current', isActive ? 'true' : 'false');
-        link.setAttribute('title', isActive ? (Theme: ' + pretty(preference) + ' (active)') : (Switch to ' + pretty(link.dataset.themeChoice) + ' theme'));
-      });
+    const updateThemeButton = (preference) => {
+      if (!themeButton || !themeIcon || !themeLabel) return;
+      themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
+      themeLabel.textContent = pretty(preference);
+      const label = 'Theme: ' + pretty(preference) + '. Click to change theme';
+      themeButton.setAttribute('aria-label', label);
+      themeButton.setAttribute('title', label);
     };
 
     const applyTheme = (preference, persist = true) => {
@@ -67,7 +72,7 @@
       root.dataset.themePreference = normalizedPreference;
       root.dataset.theme = resolvedTheme;
       updateThemeMeta(resolvedTheme);
-      updateThemeUI(normalizedPreference);
+      updateThemeButton(normalizedPreference);
       if (persist) {
         try {
           window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference);
@@ -85,12 +90,13 @@
       return 'auto';
     };
 
-    themeLinks.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        applyTheme(link.dataset.themeChoice || 'auto');
+    if (themeButton) {
+      themeButton.addEventListener('click', () => {
+        const current = readPreference();
+        const nextIndex = (validThemes.indexOf(current) + 1) % validThemes.length;
+        applyTheme(validThemes[nextIndex]);
       });
-    });
+    }
 
     applyTheme(readPreference(), false);
 

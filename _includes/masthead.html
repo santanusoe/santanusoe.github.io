@@ -14,11 +14,17 @@
               <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
-          <li class="site-nav-links__item theme-choice-item" data-theme-choice-item="auto"><a href="#" class="theme-choice-link" data-theme-choice="auto">Auto</a></li>
-          <li class="site-nav-links__item theme-choice-item" data-theme-choice-item="dawn"><a href="#" class="theme-choice-link" data-theme-choice="dawn">Dawn</a></li>
-          <li class="site-nav-links__item theme-choice-item" data-theme-choice-item="day"><a href="#" class="theme-choice-link" data-theme-choice="day">Day</a></li>
-          <li class="site-nav-links__item theme-choice-item" data-theme-choice-item="dusk"><a href="#" class="theme-choice-link" data-theme-choice="dusk">Dusk</a></li>
-          <li class="site-nav-links__item theme-choice-item" data-theme-choice-item="night"><a href="#" class="theme-choice-link" data-theme-choice="night">Night</a></li>
+          <li id="theme-toggle" class="site-nav-links__item site-nav-links__toggle theme-switcher">
+            <button
+              type="button"
+              class="theme-switcher__button"
+              aria-label="Theme: Auto. Click to change theme"
+              title="Theme: Auto"
+            >
+              <i id="theme-icon" class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+              <span id="theme-label" class="theme-switcher__label">Auto</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
