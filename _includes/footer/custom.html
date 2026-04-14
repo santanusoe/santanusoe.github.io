@@ -18,17 +18,23 @@
 <script>
   (() => {
     const THEME_STORAGE_KEY = 'theme-preference';
-    const themeLabels = { auto: 'Auto', dawn: 'Dawn', day: 'Day', dusk: 'Dusk', night: 'Night' };
-    const themeIcons = { auto: 'fa-circle-half-stroke', dawn: 'fa-sun', day: 'fa-sun', dusk: 'fa-cloud-sun', night: 'fa-moon' };
-    const themeColors = { dawn: '#fbf2e8', day: '#fafaf8', dusk: '#1b2231', night: '#0f151a' };
-
+    const themeIcons = {
+      auto: 'fa-circle-half-stroke',
+      dawn: 'fa-sun',
+      day: 'fa-sun',
+      dusk: 'fa-cloud-sun',
+      night: 'fa-moon'
+    };
+    const themeColors = {
+      dawn: '#fbf2e8',
+      day: '#fafaf8',
+      dusk: '#1b2231',
+      night: '#0f151a'
+    };
+    const validThemes = ['auto', 'dawn', 'day', 'dusk', 'night'];
     const root = document.documentElement;
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeButton = themeToggle ? themeToggle.querySelector('.theme-switcher__button') : null;
-    const themeMenu = themeToggle ? themeToggle.querySelector('.theme-switcher__menu') : null;
-    const themeValue = document.getElementById('theme-value');
+    const themeSelect = document.getElementById('theme-select');
     const themeIcon = document.getElementById('theme-icon');
-    const themeOptions = themeMenu ? Array.from(themeMenu.querySelectorAll('[data-theme-choice]')) : [];
     const prefetched = new Set();
 
     const getAutoTheme = () => {
@@ -41,16 +47,6 @@
 
     const resolveTheme = (preference) => preference === 'auto' ? getAutoTheme() : preference;
 
-    const readPreference = () => {
-      const preference = root.dataset.themePreference;
-      if (preference && themeLabels[preference]) return preference;
-      try {
-        const savedPreference = window.localStorage.getItem(THEME_STORAGE_KEY);
-        if (savedPreference && themeLabels[savedPreference]) return savedPreference;
-      } catch (_) {}
-      return 'auto';
-    };
-
     const updateThemeMeta = (theme) => {
       const metaTheme = document.querySelector('meta[name="theme-color"]');
       if (metaTheme) {
@@ -58,48 +54,44 @@
       }
     };
 
-    const updateThemeUI = (preference, resolvedTheme) => {
-      if (themeValue) themeValue.textContent = themeLabels[preference] || themeLabels.auto;
-      if (themeIcon) {
-        const iconClass = themeIcons[preference] || themeIcons.auto;
-        themeIcon.className = 'fa-solid ' + iconClass;
-        themeIcon.setAttribute('title', preference === 'auto' ? 'Theme: Auto (' + (themeLabels[resolvedTheme] || resolvedTheme) + ')' : 'Theme: ' + (themeLabels[preference] || preference));
+    const updateThemeUI = (preference) => {
+      if (themeSelect) {
+        themeSelect.value = preference;
       }
-      themeOptions.forEach((option) => {
-        const isActive = option.dataset.themeChoice === preference;
-        option.classList.toggle('is-active', isActive);
-        option.setAttribute('aria-checked', isActive ? 'true' : 'false');
-      });
+      if (themeIcon) {
+        themeIcon.className = 'fa-solid ' + (themeIcons[preference] || themeIcons.auto);
+      }
     };
 
     const applyTheme = (preference, persist = true) => {
-      const normalizedPreference = themeLabels[preference] ? preference : 'auto';
+      const normalizedPreference = validThemes.includes(preference) ? preference : 'auto';
       const resolvedTheme = resolveTheme(normalizedPreference);
       root.dataset.themePreference = normalizedPreference;
       root.dataset.theme = resolvedTheme;
       updateThemeMeta(resolvedTheme);
-      updateThemeUI(normalizedPreference, resolvedTheme);
+      updateThemeUI(normalizedPreference);
       if (persist) {
-        try { window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference); } catch (_) {}
+        try {
+          window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference);
+        } catch (_) {}
       }
     };
 
-    const openThemeMenu = () => {
-      if (!themeToggle || !themeButton || !themeMenu) return;
-      themeToggle.classList.add('is-open');
-      themeMenu.hidden = false;
-      themeButton.setAttribute('aria-expanded', 'true');
-    };
-
-    const closeThemeMenu = () => {
-      if (!themeToggle || !themeButton || !themeMenu) return;
-      themeToggle.classList.remove('is-open');
-      themeMenu.hidden = true;
-      themeButton.setAttribute('aria-expanded', 'false');
+    const readPreference = () => {
+      const current = root.dataset.themePreference;
+      if (current && validThemes.includes(current)) return current;
+      try {
+        const savedPreference = window.localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedPreference && validThemes.includes(savedPreference)) return savedPreference;
+      } catch (_) {}
+      return 'auto';
     };
 
     const isInternalNavigation = (url) =>
-      url.origin === window.location.origin && !url.hash && !url.href.startsWith('mailto:') && !url.href.startsWith('tel:');
+      url.origin === window.location.origin &&
+      !url.hash &&
+      !url.href.startsWith('mailto:') &&
+      !url.href.startsWith('tel:');
 
     const prefetchPage = (href) => {
       if (!href || prefetched.has(href)) return;
@@ -123,28 +115,16 @@
 
     applyTheme(readPreference(), false);
 
-    if (themeButton && themeMenu) {
-      themeButton.addEventListener('click', () => { themeMenu.hidden ? openThemeMenu() : closeThemeMenu(); });
-      themeOptions.forEach((option) => {
-        option.addEventListener('click', () => {
-          applyTheme(option.dataset.themeChoice || 'auto');
-          closeThemeMenu();
-          themeButton.focus();
-        });
-      });
-      document.addEventListener('click', (event) => {
-        if (!themeToggle.contains(event.target)) closeThemeMenu();
-      });
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          closeThemeMenu();
-          themeButton.focus();
-        }
+    if (themeSelect) {
+      themeSelect.addEventListener('change', (event) => {
+        applyTheme(event.target.value || 'auto');
       });
     }
 
     window.setInterval(() => {
-      if (readPreference() === 'auto') applyTheme('auto', false);
+      if (readPreference() === 'auto') {
+        applyTheme('auto', false);
+      }
     }, 60000);
 
     document.addEventListener('mouseover', (event) => queuePrefetch(event.target.closest('a[href]')), { passive: true });
