@@ -2,7 +2,7 @@
 title: "The golden ratio primal-dual algorithm with two new stepsize rules for convex-concave saddle point problems"
 collection: publications
 category: manuscripts
-date: 2025-06-01
+date: 2026-01-05
 with: "Matthew K. Tam and V. Vetrivel"
 venue: "Computational Optimization and Applications"
 link_label: "arXiv"
