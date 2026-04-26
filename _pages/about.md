@@ -12,4 +12,4 @@ I am a [Prime Minister's Research Fellow (PMRF)](https://pmrf.in/) and a Joint P
 </div>
 
 {: .notice--primary}
-**Research keywords.** Operator splitting, primal--dual methods, monotone inclusions, variational inequalities, convex optimisation, and saddle-point algorithms.
+**Research keywords.** Operator splitting, primal--dual methods, monotone inclusions, variational inequalities, and convex optimisation.
