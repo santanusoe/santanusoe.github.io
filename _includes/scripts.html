@@ -1,3 +1,7 @@
-<script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+{% comment %}
+No site-wide JavaScript is loaded here. The homepage and navigation are static,
+so removing the default Academic Pages script reduces one network request and
+prevents avoidable client-side work on slow connections.
+{% endcomment %}
 
 {% include analytics.html %}
