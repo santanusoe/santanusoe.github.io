@@ -9,7 +9,7 @@ baseurl                  : ""
 repository               : "santanusoe/santanusoe.github.io"
 
 author:
-  avatar           : "profile.png"
+  avatar           :
   name             : "Santanu Soe"
   pronouns         :
   bio              : 
@@ -107,7 +107,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
@@ -251,7 +251,6 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: true
       share: true
       comment: true
   # _talks
@@ -276,21 +275,13 @@ timezone: Asia/Kolkata # https://en.wikipedia.org/wiki/List_of_tz_database_time_
 
 # Plugins
 plugins:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
-  - jemoji
 
 # Mimic GitHub Pages with --safe
 whitelist:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
-  - jemoji
 
 # Archives
 category_archive:
