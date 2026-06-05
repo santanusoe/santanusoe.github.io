@@ -4,7 +4,9 @@ collection: publications
 category: manuscripts
 date: 2026-05-05
 with: "G. Kumar and V. Vetrivel"
-venue: "to appear in The Journal of Analysis"
+venue: "The Journal of Analysis"
 link_label: "arXiv"
 paperurl: "https://arxiv.org/abs/2505.06170"
+doi: "https://doi.org/10.1007/s41478-026-01104-x"
 ---
+
