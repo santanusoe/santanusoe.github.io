@@ -5,38 +5,19 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% assign talk_items = site.talks | sort: "date" | reverse %}
-
-<h2>Conference Presentation</h2>
+<h2>Conference presentations</h2>
 <ul class="compact-list talks-list">
-  {% for post in talk_items %}
-    {% if post.title == "5th International Conference on Nonlinear Applied Analysis and Optimization" or post.title == "Melbourne India Postgraduate Academy Conference (MIPA 2025)" %}
-    <li class="compact-list__item">
-      <div class="compact-list__title">{{ post.title }}</div>
-      <div class="compact-list__meta">
-        {% if post.type %}{{ post.type }}{% endif %}
-        {% if post.venue %}, {{ post.venue }}{% endif %}
-        {% if post.location %}, {{ post.location }}{% endif %}
-        {% if post.date %} &mdash; {{ post.date | date: "%b %Y" }}{% endif %}
-      </div>
-    </li>
-    {% endif %}
-  {% endfor %}
+  <li><strong>5th International Conference on Nonlinear Applied Analysis and Optimization</strong>, IIT Jodhpur, Rajasthan, India — Dec 2025.</li>
+  <li><strong>Melbourne India Postgraduate Academy Conference (MIPA 2025)</strong>, University of Melbourne, Online — Nov 2025.</li>
 </ul>
 
 <h2>Workshops</h2>
 <ul class="compact-list talks-list">
-  {% for post in talk_items %}
-    {% unless post.title == "Conference Proceeding talk 3 on Relevant Topic in Your Field" or post.title == "Talk 2 on Relevant Topic in Your Field" or post.title == "Tutorial 1 on Relevant Topic in Your Field" or post.title == "Talk 1 on Relevant Topic in Your Field" or post.title == "5th International Conference on Nonlinear Applied Analysis and Optimization" or post.title == "Melbourne India Postgraduate Academy Conference (MIPA 2025)" %}
-    <li class="compact-list__item">
-      <div class="compact-list__title">{{ post.title }}</div>
-      <div class="compact-list__meta">
-        {% if post.type %}{{ post.type }}{% endif %}
-        {% if post.venue %}, {{ post.venue }}{% endif %}
-        {% if post.location %}, {{ post.location }}{% endif %}
-        {% if post.date %} &mdash; {{ post.date | date: "%b %Y" }}{% endif %}
-      </div>
-    </li>
-    {% endunless %}
-  {% endfor %}
+  <li><strong>Workshop on Decision and Control</strong>, University of Melbourne, Melbourne, Australia — Jun 2–3, 2026.</li>
+  <li><strong>Mathematics in Industry Study Group (MISG 2025)</strong>, Monash University, VIC, Australia — Feb 2025.</li>
+  <li><strong>Workshop on Linear Algebra through Data Science</strong>, IMSc, Chennai, India — May 2024.</li>
+  <li><strong>Mini-Course on Optimization Theory and Its Applications</strong>, VIASM, Online — Mar 2024.</li>
+  <li><strong>Workshop on Data Science: Probabilistic and Optimization Methods</strong>, ICTS-TIFR, Bangalore, India — Jul 2023.</li>
+  <li><strong>NSMA 2022</strong>, Department of Mathematics, IIT Madras, Chennai, India — Dec 2022.</li>
+  <li><strong>Analysis, Inverse Problems and Applications</strong>, Department of Mathematics, IIT Madras, Chennai, India — Jul 2022.</li>
 </ul>
