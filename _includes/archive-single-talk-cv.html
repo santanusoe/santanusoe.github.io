@@ -2,15 +2,11 @@
 
 {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 
-<div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <li>
-      <h3 class="archive__item-title" itemprop="headline">
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-      </h3>
-      <p class="archive__item-excerpt" itemprop="description">
-        {% if post.venue %}{{ post.venue }}{% endif %}{% if post.location %}, {{ post.location }}{% endif %}{% if post.date %} — {{ post.date | date: '%b %Y' }}{% endif %}
-      </p>
-    </li>
-  </article>
-</div>
+<li class="talk-cv-item">
+  <strong>
+    <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+  </strong><br />
+  <span>
+    {% if post.date %}{{ post.date | date: '%b %Y' }}{% endif %}{% if post.venue %} · {{ post.venue }}{% endif %}{% if post.location %}, {{ post.location }}{% endif %}
+  </span>
+</li>
