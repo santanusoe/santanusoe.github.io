@@ -2,7 +2,7 @@
 title: "The golden ratio proximal ADMM with norm independent step-sizes for separable convex optimization"
 collection: publications
 category: manuscripts
-date: 2027-07-02
+date: 2026-07-02
 with: "V. Vetrivel"
 venue: "Journal of Optimization Theory and Applications"
 link_label: "arXiv"
