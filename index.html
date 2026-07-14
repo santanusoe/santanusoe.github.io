@@ -259,6 +259,24 @@
       overflow: hidden;
     }
 
+    .visitor-map-frame {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 620 / 325;
+      border: 0;
+      background: #41474b;
+    }
+
+    .visitor-map-loading {
+      margin: 0;
+      padding: .75rem;
+      color: #fff;
+      background: #41474b;
+      font-size: .72rem;
+      text-align: center;
+    }
+
     #mapmyvisitors-widget,
     .visitor-map .mapmyvisitors-map-container {
       display: block !important;
@@ -408,43 +426,49 @@
       <div class="visitor-panel__heading">
         <h2 class="visitor-panel__title" id="visitor-title">Visitors</h2>
       </div>
-      <div class="visitor-map">
-        <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=ffffff&amp;w=a&amp;d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;co=41474b"></script>
-        <script>
-          (function () {
-            var map = document.querySelector(".visitor-map");
-
-            function disableNavigation() {
-              var widget = document.getElementById("mapmyvisitors-widget");
-              if (!widget) return;
-              widget.removeAttribute("href");
-              widget.removeAttribute("target");
-              widget.removeAttribute("title");
-              widget.setAttribute("role", "img");
-              widget.setAttribute("aria-label", "Live world visitor map and page-view count");
-              widget.setAttribute("tabindex", "-1");
-            }
-
-            function blockNavigation(event) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-
-            disableNavigation();
-            map.addEventListener("click", blockNavigation, true);
-            map.addEventListener("auxclick", blockNavigation, true);
-            map.addEventListener("keydown", function (event) {
-              if (event.key === "Enter" || event.key === " ") blockNavigation(event);
-            }, true);
-
-            [0, 100, 500, 1500].forEach(function (delay) {
-              window.setTimeout(disableNavigation, delay);
-            });
-            window.addEventListener("load", disableNavigation, { once: true });
-          }());
-        </script>
-        <noscript><p>Enable JavaScript to view the live visitor map.</p></noscript>
+      <div class="visitor-map" id="visitor-map">
+        <p class="visitor-map-loading">Loading live visitor map…</p>
       </div>
+      <noscript><p>Enable JavaScript to view the live visitor map.</p></noscript>
+      <script>
+        (function () {
+          var host = document.getElementById("visitor-map");
+
+          function mountVisitorMap() {
+            var frame = document.createElement("iframe");
+            var remoteScript = "<scr" + "ipt type=\"text/javascript\" id=\"mapmyvisitors\" src=\"https://mapmyvisitors.com/map.js?cl=ffffff&amp;w=a&amp;d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;co=41474b\"></scr" + "ipt>";
+            frame.className = "visitor-map-frame";
+            frame.title = "Live world visitor map and page-view count";
+            frame.setAttribute("sandbox", "allow-scripts");
+            frame.setAttribute("scrolling", "no");
+            frame.srcdoc = [
+              "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">",
+              "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">",
+              "<style>",
+              "html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#41474b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}",
+              "a{pointer-events:none!important;cursor:default!important;text-decoration:none!important}",
+              ".mapmyvisitors-date{display:none!important}",
+              ".mapmyvisitors-map-container{display:block!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important}",
+              ".mapmyvisitors-visitors{display:block!important;height:21px!important;padding:3px 8px!important;box-sizing:border-box!important;color:#fff!important;background:#41474b!important;font-size:10px!important;line-height:15px!important;text-align:right!important}",
+              ".mapmyvisitors-map{width:100%!important;height:auto!important;aspect-ratio:2.04/1}",
+              ".jvectormap-container,svg,img,canvas{display:block!important;width:100%!important;max-width:none!important;height:100%!important;margin:0!important}",
+              "</style></head><body>",
+              "<scr" + "ipt>function stopMapNavigation(e){e.preventDefault();e.stopPropagation()}document.addEventListener('click',stopMapNavigation,true);document.addEventListener('auxclick',stopMapNavigation,true);document.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')stopMapNavigation(e)},true);</scr" + "ipt>",
+              remoteScript,
+              "</body></html>"
+            ].join("");
+            host.replaceChildren(frame);
+          }
+
+          if (document.readyState === "complete") {
+            window.setTimeout(mountVisitorMap, 0);
+          } else {
+            window.addEventListener("load", function () {
+              window.setTimeout(mountVisitorMap, 0);
+            }, { once: true });
+          }
+        }());
+      </script>
     </section>
   </main>
 
