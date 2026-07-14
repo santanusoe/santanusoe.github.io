@@ -349,7 +349,7 @@ img {
 
 .archive li.pub-item {
   margin: 0;
-  padding: .38rem 0 .36rem .04rem;
+  padding: .34rem 0 .32rem .04rem;
   border-bottom: 1px solid var(--global-border-color);
   font-size: inherit;
   line-height: 1.25;
@@ -364,18 +364,15 @@ img {
 }
 
 .archive .pub-item__authors {
-  margin: .05rem 0 0;
+  margin: .03rem 0 0;
   color: #536476;
   font-size: .74rem;
-  line-height: 1.22;
+  line-height: 1.18;
 }
 
 .pub-item__footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .18rem .55rem;
-  margin-top: .06rem;
+  display: block;
+  margin-top: .03rem;
 }
 
 .archive .pub-item__source {
@@ -386,7 +383,7 @@ img {
   margin: 0;
   color: var(--global-text-color-light);
   font-size: .71rem;
-  line-height: 1.2;
+  line-height: 1.18;
 }
 
 .pub-item__source-name {
@@ -410,7 +407,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: .3rem;
-  margin: 0;
+  margin: .08rem 0 0;
 }
 
 .pub-item__links a {
@@ -672,7 +669,7 @@ img {
   }
 
 .archive li.pub-item {
-    padding: .36rem 0 .34rem .03rem;
+    padding: .33rem 0 .31rem .03rem;
   }
 
 .publication-list {
