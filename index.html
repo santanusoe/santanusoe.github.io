@@ -228,6 +228,67 @@
       text-decoration: none;
     }
 
+    .visitor-panel {
+      margin-top: .7rem;
+      padding: clamp(.75rem, 1.6vw, 1rem);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(18, 32, 51, .04);
+      overflow: hidden;
+    }
+
+    .visitor-panel__heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .55rem;
+    }
+
+    .visitor-panel__title {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: .68rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .visitor-panel__status {
+      margin: 0;
+      color: var(--muted);
+      font-size: .7rem;
+    }
+
+    .visitor-map {
+      width: 100%;
+      min-height: clamp(11rem, 32vw, 21rem);
+      border-radius: .7rem;
+      background: #337faf;
+      overflow: hidden;
+    }
+
+    .visitor-map > a,
+    .visitor-map img,
+    .visitor-map canvas,
+    .visitor-map iframe {
+      display: block !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      margin: 0 auto !important;
+    }
+
+    .visitor-note {
+      margin: .42rem 0 0;
+      color: var(--muted);
+      font-size: .65rem;
+      line-height: 1.35;
+    }
+
+    .visitor-note a { text-decoration: none; }
+
     .site-footer {
       border-top: 1px solid var(--line);
       background: rgba(255, 255, 255, .68);
@@ -323,6 +384,18 @@
           <li><a href="https://www.researchgate.net/profile/Santanu-Soe">ResearchGate</a></li>
         </ul>
       </article>
+    </section>
+
+    <section class="visitor-panel" aria-labelledby="visitor-title">
+      <div class="visitor-panel__heading">
+        <h2 class="visitor-panel__title" id="visitor-title">Visitors</h2>
+        <p class="visitor-panel__status">Live map and visit count</p>
+      </div>
+      <div class="visitor-map">
+        <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;cl=ffffff&amp;w=a"></script>
+        <noscript><p>Enable JavaScript to view the live visitor map.</p></noscript>
+      </div>
+      <p class="visitor-note">Locations are approximate and derived from visitor IP addresses. <a href="https://mapmyvisitors.com/b/policy">Privacy information</a>.</p>
     </section>
   </main>
 
