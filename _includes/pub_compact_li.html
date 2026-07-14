@@ -1,19 +1,11 @@
 <li class="pub-item">
   <h3 class="pub-item__title">{{ include.p.title }}</h3>
 
-  {% if include.p.with %}
-    <p class="pub-item__authors">with {{ include.p.with }}</p>
-  {% endif %}
-
-  <p class="pub-item__venue">
-    {% if include.p.category == "preprints" and include.p.arxiv_id %}
-      <em>arXiv:{{ include.p.arxiv_id }}</em>
-    {% elsif include.p.venue %}
-      <em>{{ include.p.venue }}</em>
-    {% else %}
-      <em>Publication</em>
+  <p class="pub-item__meta">
+    {% if include.p.with %}
+      <span>with {{ include.p.with }}</span>
+      <span class="pub-item__separator" aria-hidden="true">·</span>
     {% endif %}
-    <span class="pub-item__separator" aria-hidden="true">·</span>
     <span class="pub-item__year">{{ include.p.date | date: "%Y" }}</span>
   </p>
 

@@ -303,7 +303,6 @@ img {
 
 /* Shared page introductions */
 
-.teaching-intro,
 .talks-intro {
   margin: 0 0 1.6rem;
   padding: 1.2rem 1.3rem;
@@ -322,7 +321,6 @@ img {
   text-transform: uppercase;
 }
 
-.teaching-intro p:last-child,
 .talks-intro p:last-child {
   margin-bottom: 0;
 }
@@ -363,28 +361,15 @@ img {
   line-height: 1.5;
 }
 
-.pub-item__authors {
+.pub-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .38rem;
   margin: .32rem 0 0;
   color: #536476;
   font-size: .88rem;
   line-height: 1.5;
-}
-
-.pub-item__venue {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .38rem;
-  margin: .2rem 0 0;
-  color: var(--global-text-color-light);
-  font-size: .84rem;
-  line-height: 1.45;
-}
-
-.pub-item__venue em {
-  color: #34465a;
-  font-style: normal;
-  font-weight: 650;
 }
 
 .pub-item__separator {
@@ -659,7 +644,6 @@ img {
     margin-bottom: .25rem;
   }
 
-  .teaching-intro,
   .talks-intro {
     padding: 1rem;
   }

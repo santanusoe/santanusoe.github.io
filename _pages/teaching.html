@@ -7,11 +7,6 @@ author_profile: true
 
 {% assign teaching_items = site.teaching | sort: "date" | reverse %}
 
-<div class="teaching-intro">
-  <p class="page-kicker">Teaching</p>
-  <p>Courses and classes in mathematics, optimisation, and analysis.</p>
-</div>
-
 <ul class="teaching-list">
   {% for post in teaching_items %}
     {% unless post.title == "Teaching experience 1" or post.title == "Teaching experience 2" %}
