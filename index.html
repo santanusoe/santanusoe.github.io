@@ -83,20 +83,38 @@
       align-items: center;
       min-height: 2.25rem;
       padding: .25rem .75rem;
+      border: 1px solid transparent;
       border-radius: 999px;
       color: #415167;
       font-size: .88rem;
       font-weight: 650;
       text-decoration: none;
-      transition: background .2s ease, color .2s ease;
+      transition: background .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease, transform .18s ease;
     }
 
     .nav-links a:hover,
-    .nav-links a:focus-visible,
     .nav-links .active a {
       color: var(--ink);
       background: var(--accent-wash);
-      outline: none;
+      border-color: rgba(15, 118, 110, .14);
+    }
+
+    .nav-links a:hover {
+      box-shadow: 0 6px 16px rgba(18, 32, 51, .08);
+      transform: translateY(-1px);
+    }
+
+    .nav-links a:focus-visible {
+      color: var(--ink);
+      background: var(--accent-wash);
+      border-color: var(--accent);
+      outline: 2px solid rgba(15, 118, 110, .28);
+      outline-offset: 2px;
+    }
+
+    .nav-links a:active {
+      box-shadow: none;
+      transform: translateY(0) scale(.97);
     }
 
     .site-main {
@@ -245,6 +263,10 @@
       .profile-photo { width: 144px; }
       h1 { font-size: clamp(2.35rem, 11vw, 3.35rem); }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-links a { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -267,12 +289,15 @@
       <div>
         <h1 id="page-title">Santanu Soe</h1>
         <p class="lead">
-          I am a <a href="https://pmrf.in/">Prime Minister's Research Fellow</a> and a Joint PhD scholar in Mathematics at
+          I am a <a href="https://pmrf.in/">Prime Minister's Research Fellow</a> and a
+          <a href="https://research.unimelb.edu.au/strengths/initiatives/international-training-groups/melbourne-india-postgraduate-academy-mipa">Joint PhD student</a> in Mathematics at
           <a href="https://math.iitm.ac.in/">IIT Madras</a> and
           <a href="https://ms.unimelb.edu.au/">The University of Melbourne</a>.
-          My doctoral research is supervised by
+          I work under the supervision of
           <a href="https://math.iitm.ac.in/innerfaculty.php?fname=Vetrivel+V">V. Vetrivel</a>
-          and <a href="https://findanexpert.unimelb.edu.au/profile/859328-matthew-tam">Matthew K. Tam</a>.
+          and <a href="https://findanexpert.unimelb.edu.au/profile/859328-matthew-tam">Matthew K. Tam</a>,
+          and I am a recipient of the
+          <a href="https://scholarships.unimelb.edu.au/awards/melbourne-research-scholarship">Melbourne Research Scholarship</a>.
         </p>
       </div>
     </section>

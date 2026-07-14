@@ -1,31 +1,25 @@
 <li class="pub-item">
   <h3 class="pub-item__title">{{ include.p.title }}</h3>
 
-  <p class="pub-item__details">
-    {% if include.p.with %}
-      with {{ include.p.with }}.
-    {% endif %}
+  {% if include.p.with %}
+    <p class="pub-item__authors">with {{ include.p.with }}</p>
+  {% endif %}
 
-    {% if include.p.category == "preprints" %}
-      {% if include.p.arxiv_id %}
-        <em>arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.
-      {% elsif include.p.venue %}
-        <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.
-      {% else %}
-        {{ include.p.date | date: "%Y" }}.
-      {% endif %}
+  <p class="pub-item__venue">
+    {% if include.p.category == "preprints" and include.p.arxiv_id %}
+      <em>arXiv:{{ include.p.arxiv_id }}</em>
+    {% elsif include.p.venue %}
+      <em>{{ include.p.venue }}</em>
     {% else %}
-      {% if include.p.venue %}
-        <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.
-      {% else %}
-        {{ include.p.date | date: "%Y" }}.
-      {% endif %}
+      <em>Publication</em>
     {% endif %}
+    <span class="pub-item__separator" aria-hidden="true">·</span>
+    <span class="pub-item__year">{{ include.p.date | date: "%Y" }}</span>
   </p>
 
   <div class="pub-item__links" aria-label="Publication links">
     {% if include.p.paperurl %}
-      <a href="{{ include.p.paperurl }}">
+      <a href="{{ include.p.paperurl }}" target="_blank" rel="noopener noreferrer">
         {% if include.p.link_label %}
           {{ include.p.link_label }}
         {% elsif include.p.arxiv_id %}
@@ -38,9 +32,9 @@
 
     {% if include.p.category != "preprints" %}
       {% if include.p.doi %}
-        <a href="{{ include.p.doi }}">DOI</a>
+        <a href="{{ include.p.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
       {% elsif include.p.doiurl %}
-        <a href="{{ include.p.doiurl }}">DOI</a>
+        <a href="{{ include.p.doiurl }}" target="_blank" rel="noopener noreferrer">DOI</a>
       {% endif %}
     {% endif %}
   </div>
