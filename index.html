@@ -128,20 +128,11 @@
       box-shadow: var(--shadow);
     }
 
-    .eyebrow {
-      margin: 0 0 .8rem;
-      color: var(--accent-dark);
-      font-size: .76rem;
-      font-weight: 750;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
     h1 {
       max-width: 11ch;
       margin: 0;
       color: var(--ink);
-      font-size: clamp(3rem, 8vw, 6.2rem);
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
       line-height: .98;
       letter-spacing: -.065em;
     }
@@ -252,7 +243,7 @@
       .nav-links a { padding-inline: .55rem; font-size: .84rem; }
       .site-main { padding-top: 2.5rem; }
       .profile-photo { width: 144px; }
-      h1 { font-size: clamp(2.75rem, 16vw, 4.5rem); }
+      h1 { font-size: clamp(2.35rem, 11vw, 3.35rem); }
     }
   </style>
 </head>
@@ -260,9 +251,10 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <ul class="nav-links">
+        <li class="active"><a href="/" aria-current="page">About</a></li>
         <li><a href="/publications/">Research</a></li>
-        <li><a href="/talks/">Talks</a></li>
         <li><a href="/teaching/">Teaching</a></li>
+        <li><a href="/talks/">Talks</a></li>
       </ul>
     </div>
   </nav>
@@ -273,7 +265,6 @@
         <img src="/images/profile.svg" alt="Santanu Soe" width="220" height="220" fetchpriority="high" decoding="async">
       </div>
       <div>
-        <p class="eyebrow">Mathematics · Optimization · Variational Analysis</p>
         <h1 id="page-title">Santanu Soe</h1>
         <p class="lead">
           I am a <a href="https://pmrf.in/">Prime Minister's Research Fellow</a> and a Joint PhD scholar in Mathematics at
