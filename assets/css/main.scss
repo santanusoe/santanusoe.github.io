@@ -243,7 +243,6 @@ img {
 }
 
 .page__content h1,
-.page__content h1,
 .page__content h2,
 .page__content h3,
 .archive h1,
@@ -253,8 +252,9 @@ img {
   line-height: 1.25;
 }
 
-.page__content h2,
-.archive h2 {
+.page__content > h2,
+.archive > h2,
+.publication-section h2 {
   display: flex;
   align-items: baseline;
   gap: .65rem;
@@ -265,8 +265,9 @@ img {
   letter-spacing: -.01em;
 }
 
-.page__content h2:first-child,
-.archive h2:first-child {
+.page__content > h2:first-child,
+.archive > h2:first-child,
+.publication-section h2:first-child {
   margin-top: 0;
 }
 
