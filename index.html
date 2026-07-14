@@ -426,5 +426,17 @@
       &copy; 2026 Santanu Soe · Built with <a href="https://academicpages.github.io/" rel="nofollow">Academic Pages</a>.
     </div>
   </footer>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          registrations.forEach(function (registration) {
+            registration.unregister();
+          });
+        });
+      }, { once: true });
+    }
+  </script>
 </body>
 </html>
