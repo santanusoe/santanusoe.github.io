@@ -437,12 +437,10 @@
               if (event.key === "Enter" || event.key === " ") blockNavigation(event);
             }, true);
 
-            new MutationObserver(disableNavigation).observe(map, {
-              childList: true,
-              subtree: true,
-              attributes: true,
-              attributeFilter: ["href", "target", "title", "tabindex"]
+            [0, 100, 500, 1500].forEach(function (delay) {
+              window.setTimeout(disableNavigation, delay);
             });
+            window.addEventListener("load", disableNavigation, { once: true });
           }());
         </script>
         <noscript><p>Enable JavaScript to view the live visitor map.</p></noscript>
