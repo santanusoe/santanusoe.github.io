@@ -349,40 +349,49 @@ img {
 
 .pub-item {
   margin: 0;
-  padding: 1rem 0 .95rem .15rem;
+  padding: .72rem 0 .68rem .1rem;
   border-bottom: 1px solid var(--global-border-color);
 }
 
 .pub-item__title {
-  margin: 0 0 .3rem;
+  margin: 0;
   color: var(--global-heading-color);
-  font-size: 1rem;
-  font-weight: 750;
-  line-height: 1.5;
+  font-size: .97rem;
+  font-weight: 700;
+  line-height: 1.36;
 }
 
 .pub-item__authors {
-  margin: .34rem 0 0;
+  margin: .14rem 0 0;
   color: #536476;
-  font-size: .88rem;
-  line-height: 1.52;
+  font-size: .83rem;
+  line-height: 1.38;
+}
+
+.pub-item__authors span {
+  margin-right: .16rem;
+  color: var(--global-text-color-light);
+  font-size: .68rem;
+  font-weight: 750;
+  letter-spacing: .07em;
+  text-transform: uppercase;
 }
 
 .pub-item__source {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: .4rem;
-  margin: .16rem 0 0;
+  gap: .34rem;
+  margin: .06rem 0 0;
   color: var(--global-text-color-light);
-  font-size: .84rem;
-  line-height: 1.48;
+  font-size: .8rem;
+  line-height: 1.35;
 }
 
 .pub-item__source-name {
   color: #34465a;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 550;
 }
 
 .pub-item__separator {
@@ -391,7 +400,7 @@ img {
 
 .pub-item__year {
   color: var(--global-link-color-hover);
-  font-size: .8rem;
+  font-size: .77rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -399,22 +408,22 @@ img {
 .pub-item__links {
   display: flex;
   flex-wrap: wrap;
-  gap: .45rem;
-  margin-top: .65rem;
+  gap: .35rem;
+  margin-top: .36rem;
 }
 
 .pub-item__links a {
   display: inline-flex;
   align-items: center;
-  gap: .3rem;
-  min-height: 1.9rem;
-  padding: .28rem .62rem;
+  gap: .24rem;
+  min-height: 1.68rem;
+  padding: .17rem .48rem;
   border: 1px solid #c8d9d7;
-  border-radius: .48rem;
+  border-radius: .4rem;
   color: var(--global-link-color-hover);
   background: #fff;
   box-shadow: 0 1px 2px rgba(18, 32, 51, .05);
-  font-size: .78rem;
+  font-size: .73rem;
   font-weight: 700;
   letter-spacing: .01em;
   text-decoration: none;
@@ -662,7 +671,7 @@ img {
   }
 
   .pub-item {
-    padding-top: .85rem;
+    padding: .68rem 0 .64rem .05rem;
   }
 
   .publication-list {
