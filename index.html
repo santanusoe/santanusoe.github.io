@@ -259,31 +259,31 @@
       overflow: hidden;
     }
 
-    .visitor-map-image {
+    .visitor-map-stage {
       position: relative;
       width: 100%;
-      aspect-ratio: 620 / 327;
+      aspect-ratio: 620 / 325;
       background: #41474b;
-      overflow: hidden;
     }
 
-    .visitor-map-image img {
+    .visitor-map-frame {
       display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 620 / 327;
-      object-fit: cover;
+      height: 100%;
+      border: 0;
+      background: #41474b;
+      pointer-events: none;
     }
 
-    .visitor-map-image::after {
+    .visitor-map-loading {
       position: absolute;
-      top: 3.85%;
-      right: 0;
-      left: 0;
-      height: 4.6%;
-      background: #41474b;
-      content: "";
-      pointer-events: none;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      color: rgba(255, 255, 255, .78);
+      font-size: .72rem;
+      letter-spacing: .02em;
     }
 
     .site-footer {
@@ -388,33 +388,50 @@
         <h2 class="visitor-panel__title" id="visitor-title">Visitors</h2>
       </div>
       <div class="visitor-map">
-        <div class="visitor-map-image">
-          <img
-            id="visitor-map-image"
-            data-src="https://mapmyvisitors.com/map.png?d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;cl=ffffff&amp;co=41474b&amp;w=620"
-            alt="Live world visitor map and page-view count"
-            width="620"
-            height="327"
-            decoding="async">
+        <div class="visitor-map-stage" id="visitor-map-stage" aria-label="Live world visitor map and page-view count">
+          <p class="visitor-map-loading">Loading live visitor map…</p>
         </div>
       </div>
-      <noscript><p>The live visitor map requires JavaScript and images to be enabled.</p></noscript>
+      <noscript><p>The live visitor map requires JavaScript to be enabled.</p></noscript>
       <script>
         (function () {
-          function loadVisitorMap() {
-            var image = document.getElementById("visitor-map-image");
-            if (image && image.dataset.src) {
-              image.src = image.dataset.src;
-              image.removeAttribute("data-src");
-            }
+          var stage = document.getElementById("visitor-map-stage");
+
+          function mountVisitorMap() {
+            if (!stage || stage.querySelector("iframe")) return;
+
+            var frame = document.createElement("iframe");
+            var remoteWidget = "<scr" + "ipt type=\"text/javascript\" id=\"mapmyvisitors\" src=\"https://mapmyvisitors.com/map.js?cl=ffffff&amp;w=a&amp;t=n&amp;d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;co=41474b\"></scr" + "ipt>";
+
+            frame.className = "visitor-map-frame";
+            frame.title = "Live world visitor map with city-level visitor dots and page-view count";
+            frame.tabIndex = -1;
+            frame.setAttribute("sandbox", "allow-scripts");
+            frame.setAttribute("scrolling", "no");
+            frame.srcdoc = [
+              "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">",
+              "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">",
+              "<style>",
+              "*{box-sizing:border-box}",
+              "html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#41474b;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}",
+              "a{pointer-events:none!important;color:inherit!important;text-decoration:none!important}",
+              ".mapmyvisitors-date,.jvectormap-zoomin,.jvectormap-zoomout{display:none!important}",
+              ".mapmyvisitors-map-container{display:block!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important}",
+              ".mapmyvisitors-visitors{display:block!important;height:21px!important;padding:3px 8px!important;color:#fff!important;background:#41474b!important;font-size:10px!important;line-height:15px!important;text-align:right!important}",
+              ".mapmyvisitors-map{display:block!important;width:100%!important;height:calc(100% - 21px)!important}",
+              ".jvectormap-container,svg,canvas{display:block!important;width:100%!important;height:100%!important;margin:0!important}",
+              "</style></head><body>",
+              remoteWidget,
+              "</body></html>"
+            ].join("");
+
+            stage.replaceChildren(frame);
           }
 
           if (document.readyState === "complete") {
-            window.setTimeout(loadVisitorMap, 30000);
+            window.setTimeout(mountVisitorMap, 0);
           } else {
-            window.addEventListener("load", function () {
-              window.setTimeout(loadVisitorMap, 30000);
-            }, { once: true });
+            window.addEventListener("load", mountVisitorMap, { once: true });
           }
         }());
       </script>
