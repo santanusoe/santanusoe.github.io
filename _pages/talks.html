@@ -6,9 +6,6 @@ author_profile: true
 ---
 
 {% assign all_talks = site.talks | sort: "date" | reverse %}
-{% assign conference_talks = all_talks | where_exp: "talk", "talk.type contains 'Paper'" %}
-{% assign other_talks = all_talks | where_exp: "talk", "talk.type contains 'Paper'" | concat: all_talks %}
-
 <div class="talks-intro">
   <p class="page-kicker">Talks</p>
   <p>Selected presentations, workshops, and short courses.</p>
