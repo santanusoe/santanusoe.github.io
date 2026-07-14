@@ -361,15 +361,28 @@ img {
   line-height: 1.5;
 }
 
-.pub-item__meta {
+.pub-item__authors {
+  margin: .34rem 0 0;
+  color: #536476;
+  font-size: .88rem;
+  line-height: 1.52;
+}
+
+.pub-item__source {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: .38rem;
-  margin: .32rem 0 0;
-  color: #536476;
-  font-size: .88rem;
-  line-height: 1.5;
+  gap: .4rem;
+  margin: .16rem 0 0;
+  color: var(--global-text-color-light);
+  font-size: .84rem;
+  line-height: 1.48;
+}
+
+.pub-item__source-name {
+  color: #34465a;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .pub-item__separator {
