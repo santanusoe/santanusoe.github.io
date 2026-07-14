@@ -15,19 +15,8 @@ author_profile: true
 {% assign journal_start = total_pubs | minus: preprints.size %}
 {% assign conf_start = journal_start | minus: journals.size %}
 
-<div class="research-intro">
-  <p class="research-intro__label">Research keywords</p>
-  <ul class="research-tags" aria-label="Research areas">
-    <li>Operator splitting methods</li>
-    <li>Primal–dual algorithms</li>
-    <li>Monotone inclusion problems</li>
-    <li>Variational inequalities</li>
-    <li>Convex optimisation</li>
-  </ul>
-</div>
-
 <div class="publication-section">
-  <h2>Preprints <span class="publication-count">{{ preprints.size }}</span></h2>
+  <h2>Preprints</h2>
   {% if preprints.size > 0 %}
   <ol class="publication-list" reversed start="{{ total_pubs }}">
     {% for p in preprints %}
@@ -38,7 +27,7 @@ author_profile: true
   <p>No preprints listed yet.</p>
   {% endif %}
 
-  <h2>Journal Articles <span class="publication-count">{{ journals.size }}</span></h2>
+  <h2>Journal Articles</h2>
   {% if journals.size > 0 %}
   <ol class="publication-list" reversed start="{{ journal_start }}">
     {% for p in journals %}
@@ -49,7 +38,7 @@ author_profile: true
   <p>No journal articles listed yet.</p>
   {% endif %}
 
-  <h2>Conference Papers <span class="publication-count">{{ confs.size }}</span></h2>
+  <h2>Conference Papers</h2>
   {% if confs.size > 0 %}
   <ol class="publication-list" reversed start="{{ conf_start }}">
     {% for p in confs %}
