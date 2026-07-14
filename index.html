@@ -390,15 +390,34 @@
       <div class="visitor-map">
         <div class="visitor-map-image">
           <img
-            src="https://mapmyvisitors.com/map.png?d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;cl=ffffff&amp;co=41474b&amp;w=620"
+            id="visitor-map-image"
+            data-src="https://mapmyvisitors.com/map.png?d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;cl=ffffff&amp;co=41474b&amp;w=620"
             alt="Live world visitor map and page-view count"
             width="620"
             height="327"
-            loading="lazy"
             decoding="async">
         </div>
       </div>
-      <noscript><p>The live visitor map requires images to be enabled.</p></noscript>
+      <noscript><p>The live visitor map requires JavaScript and images to be enabled.</p></noscript>
+      <script>
+        (function () {
+          function loadVisitorMap() {
+            var image = document.getElementById("visitor-map-image");
+            if (image && image.dataset.src) {
+              image.src = image.dataset.src;
+              image.removeAttribute("data-src");
+            }
+          }
+
+          if (document.readyState === "complete") {
+            window.setTimeout(loadVisitorMap, 1200);
+          } else {
+            window.addEventListener("load", function () {
+              window.setTimeout(loadVisitorMap, 1200);
+            }, { once: true });
+          }
+        }());
+      </script>
     </section>
   </main>
 
