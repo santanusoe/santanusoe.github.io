@@ -1,4 +1,4 @@
-const CACHE_NAME='santanu-home-v17';
+const CACHE_NAME='santanu-home-v18';
 const HOME_ASSETS=['/','/index.html','/images/profile.svg'];
 
 self.addEventListener('install',event=>{
