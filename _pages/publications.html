@@ -15,35 +15,51 @@ author_profile: true
 {% assign journal_start = total_pubs | minus: preprints.size %}
 {% assign conf_start = journal_start | minus: journals.size %}
 
-<h2>Preprints</h2>
-{% if preprints.size > 0 %}
-<ol reversed start="{{ total_pubs }}">
-  {% for p in preprints %}
-    {% include pub_compact_li.html p=p %}
-  {% endfor %}
-</ol>
-{% else %}
-<p>No preprints listed yet.</p>
-{% endif %}
+<div class="research-intro">
+  <p class="research-intro__label">Research programme</p>
+  <p>
+    I develop adaptive first-order methods for structured convex optimisation,
+    monotone inclusions, and variational inequalities.
+  </p>
+  <ul class="research-tags" aria-label="Research areas">
+    <li>Operator splitting</li>
+    <li>Primal–dual algorithms</li>
+    <li>Monotone inclusions</li>
+    <li>Variational inequalities</li>
+  </ul>
+</div>
 
-<h2>Journal Articles</h2>
-{% if journals.size > 0 %}
-<ol reversed start="{{ journal_start }}">
-  {% for p in journals %}
-    {% include pub_compact_li.html p=p %}
-  {% endfor %}
-</ol>
-{% else %}
-<p>No journal articles listed yet.</p>
-{% endif %}
+<div class="publication-section">
+  <h2>Preprints <span class="publication-count">{{ preprints.size }}</span></h2>
+  {% if preprints.size > 0 %}
+  <ol class="publication-list" reversed start="{{ total_pubs }}">
+    {% for p in preprints %}
+      {% include pub_compact_li.html p=p %}
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p>No preprints listed yet.</p>
+  {% endif %}
 
-<h2>Conference Papers</h2>
-{% if confs.size > 0 %}
-<ol reversed start="{{ conf_start }}">
-  {% for p in confs %}
-    {% include pub_compact_li.html p=p %}
-  {% endfor %}
-</ol>
-{% else %}
-<p>No conference papers listed yet.</p>
-{% endif %}
+  <h2>Journal Articles <span class="publication-count">{{ journals.size }}</span></h2>
+  {% if journals.size > 0 %}
+  <ol class="publication-list" reversed start="{{ journal_start }}">
+    {% for p in journals %}
+      {% include pub_compact_li.html p=p %}
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p>No journal articles listed yet.</p>
+  {% endif %}
+
+  <h2>Conference Papers <span class="publication-count">{{ confs.size }}</span></h2>
+  {% if confs.size > 0 %}
+  <ol class="publication-list" reversed start="{{ conf_start }}">
+    {% for p in confs %}
+      {% include pub_compact_li.html p=p %}
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p>No conference papers listed yet.</p>
+  {% endif %}
+</div>

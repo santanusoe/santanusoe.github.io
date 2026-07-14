@@ -1,43 +1,47 @@
 <li class="pub-item">
-  <strong>{{ include.p.title }}</strong><br/>
+  <h3 class="pub-item__title">{{ include.p.title }}</h3>
 
-  {% if include.p.with %}
-    with {{ include.p.with }}.<br/>
-  {% endif %}
-
-  {% if include.p.category == "preprints" %}
-    {% if include.p.arxiv_id %}
-      <em>arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
-    {% elsif include.p.venue %}
-      <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
-    {% else %}
-      {{ include.p.date | date: "%Y" }}.<br/>
+  <p class="pub-item__details">
+    {% if include.p.with %}
+      with {{ include.p.with }}.
     {% endif %}
-  {% else %}
-    {% if include.p.venue %}
-      <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.<br/>
-    {% else %}
-      {{ include.p.date | date: "%Y" }}.<br/>
-    {% endif %}
-  {% endif %}
 
-  {% if include.p.paperurl %}
-    [<a href="{{ include.p.paperurl }}">
-      {% if include.p.link_label %}
-        {{ include.p.link_label }}
-      {% elsif include.p.arxiv_id %}
-        arXiv
+    {% if include.p.category == "preprints" %}
+      {% if include.p.arxiv_id %}
+        <em>arXiv:{{ include.p.arxiv_id }}</em>, {{ include.p.date | date: "%Y" }}.
+      {% elsif include.p.venue %}
+        <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.
       {% else %}
-        Paper
+        {{ include.p.date | date: "%Y" }}.
       {% endif %}
-    </a>]
-  {% endif %}
-
-  {% if include.p.category != "preprints" %}
-    {% if include.p.doi %}
-      &nbsp;[<a href="{{ include.p.doi }}">DOI</a>]
-    {% elsif include.p.doiurl %}
-      &nbsp;[<a href="{{ include.p.doiurl }}">DOI</a>]
+    {% else %}
+      {% if include.p.venue %}
+        <em>{{ include.p.venue }}</em>, {{ include.p.date | date: "%Y" }}.
+      {% else %}
+        {{ include.p.date | date: "%Y" }}.
+      {% endif %}
     {% endif %}
-  {% endif %}
+  </p>
+
+  <div class="pub-item__links" aria-label="Publication links">
+    {% if include.p.paperurl %}
+      <a href="{{ include.p.paperurl }}">
+        {% if include.p.link_label %}
+          {{ include.p.link_label }}
+        {% elsif include.p.arxiv_id %}
+          arXiv
+        {% else %}
+          Paper
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {% if include.p.category != "preprints" %}
+      {% if include.p.doi %}
+        <a href="{{ include.p.doi }}">DOI</a>
+      {% elsif include.p.doiurl %}
+        <a href="{{ include.p.doiurl }}">DOI</a>
+      {% endif %}
+    {% endif %}
+  </div>
 </li>
