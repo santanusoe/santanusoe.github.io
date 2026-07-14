@@ -412,15 +412,37 @@
         <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=ffffff&amp;w=a&amp;d=D4o9ZJo9sKNAIFIM-bXgWLg44kU-TaKzQLd7k31McdE&amp;co=41474b"></script>
         <script>
           (function () {
-            var widget = document.getElementById("mapmyvisitors-widget");
-            if (!widget) return;
-            widget.removeAttribute("href");
-            widget.removeAttribute("target");
-            widget.removeAttribute("title");
-            widget.setAttribute("role", "img");
-            widget.setAttribute("aria-label", "Live world visitor map and page-view count");
-            widget.setAttribute("tabindex", "-1");
-            widget.addEventListener("click", function (event) { event.preventDefault(); });
+            var map = document.querySelector(".visitor-map");
+
+            function disableNavigation() {
+              var widget = document.getElementById("mapmyvisitors-widget");
+              if (!widget) return;
+              widget.removeAttribute("href");
+              widget.removeAttribute("target");
+              widget.removeAttribute("title");
+              widget.setAttribute("role", "img");
+              widget.setAttribute("aria-label", "Live world visitor map and page-view count");
+              widget.setAttribute("tabindex", "-1");
+            }
+
+            function blockNavigation(event) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            disableNavigation();
+            map.addEventListener("click", blockNavigation, true);
+            map.addEventListener("auxclick", blockNavigation, true);
+            map.addEventListener("keydown", function (event) {
+              if (event.key === "Enter" || event.key === " ") blockNavigation(event);
+            }, true);
+
+            new MutationObserver(disableNavigation).observe(map, {
+              childList: true,
+              subtree: true,
+              attributes: true,
+              attributeFilter: ["href", "target", "title", "tabindex"]
+            });
           }());
         </script>
         <noscript><p>Enable JavaScript to view the live visitor map.</p></noscript>
