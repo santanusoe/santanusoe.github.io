@@ -107,9 +107,25 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(17rem, .65fr);
-      gap: clamp(2rem, 7vw, 6rem);
-      align-items: end;
+      grid-template-columns: minmax(11rem, .38fr) minmax(0, 1.35fr);
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: center;
+    }
+
+    .profile-photo {
+      width: min(100%, 220px);
+      margin-inline: auto;
+    }
+
+    .profile-photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
 
     .eyebrow {
@@ -138,30 +154,7 @@
       line-height: 1.65;
     }
 
-    .hero-note {
-      padding: 1.15rem 1.25rem;
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: rgba(255, 255, 255, .82);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-note p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .94rem;
-    }
-
-    .hero-note strong {
-      display: block;
-      margin-bottom: .45rem;
-      color: var(--ink);
-      font-size: 1rem;
-    }
-
-    .hero-note a { text-decoration: none; }
-
-    .content-grid {
+    .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(15rem, .75fr);
       gap: 1rem;
@@ -175,8 +168,6 @@
       background: var(--surface);
       box-shadow: 0 10px 28px rgba(18, 32, 51, .04);
     }
-
-    .info-card--wide { grid-row: span 2; }
 
     .card-label {
       margin: 0 0 .75rem;
@@ -245,10 +236,10 @@
       .nav-links { justify-content: center; }
       .site-main { padding-top: 3rem; }
       .hero,
-      .content-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
       .hero { gap: 1.75rem; }
+      .profile-photo { width: min(100%, 176px); margin-inline: 0; }
       h1 { max-width: 8ch; }
-      .info-card--wide { grid-row: auto; }
     }
 
     @media (max-width: 480px) {
@@ -260,6 +251,7 @@
       .nav-links { gap: .1rem; }
       .nav-links a { padding-inline: .55rem; font-size: .84rem; }
       .site-main { padding-top: 2.5rem; }
+      .profile-photo { width: 144px; }
       h1 { font-size: clamp(2.75rem, 16vw, 4.5rem); }
     }
   </style>
@@ -268,16 +260,18 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <ul class="nav-links">
-        <li class="active"><a href="/" aria-current="page">About</a></li>
         <li><a href="/publications/">Research</a></li>
-        <li><a href="/teaching/">Teaching</a></li>
         <li><a href="/talks/">Talks</a></li>
+        <li><a href="/teaching/">Teaching</a></li>
       </ul>
     </div>
   </nav>
 
   <main class="site-main">
     <section class="hero" aria-labelledby="page-title">
+      <div class="profile-photo">
+        <img src="/images/profile.svg" alt="Santanu Soe" width="220" height="220" fetchpriority="high" decoding="async">
+      </div>
       <div>
         <p class="eyebrow">Mathematics · Optimization · Variational Analysis</p>
         <h1 id="page-title">Santanu Soe</h1>
@@ -285,45 +279,27 @@
           I am a <a href="https://pmrf.in/">Prime Minister's Research Fellow</a> and a Joint PhD scholar in Mathematics at
           <a href="https://math.iitm.ac.in/">IIT Madras</a> and
           <a href="https://ms.unimelb.edu.au/">The University of Melbourne</a>.
+          My doctoral research is supervised by
+          <a href="https://math.iitm.ac.in/innerfaculty.php?fname=Vetrivel+V">V. Vetrivel</a>
+          and <a href="https://findanexpert.unimelb.edu.au/profile/859328-matthew-tam">Matthew K. Tam</a>.
         </p>
       </div>
-
-      <aside class="hero-note">
-        <strong>Doctoral research</strong>
-        <p>
-          Under the supervision of
-          <a href="https://math.iitm.ac.in/innerfaculty.php?fname=Vetrivel+V">V. Vetrivel</a>
-          and
-          <a href="https://findanexpert.unimelb.edu.au/profile/859328-matthew-tam">Matthew K. Tam</a>.
-        </p>
-      </aside>
     </section>
 
-    <section class="content-grid" aria-label="Academic profile">
-      <article class="info-card info-card--wide">
-        <p class="card-label">Research focus</p>
-        <p>
-          My work develops practical first-order methods for structured convex optimization and monotone problems,
-          with an emphasis on algorithms that are mathematically transparent, adaptive, and easy to implement.
-        </p>
+    <section class="about-grid" aria-label="Academic profile">
+      <article class="info-card">
+        <p class="card-label">Research keywords</p>
         <ul class="keyword-list" aria-label="Research keywords">
-          <li>Operator splitting</li>
-          <li>Primal–dual methods</li>
-          <li>Monotone inclusions</li>
+          <li>Operator splitting methods</li>
+          <li>Primal–dual algorithms</li>
+          <li>Monotone inclusion problems</li>
           <li>Variational inequalities</li>
           <li>Convex optimisation</li>
         </ul>
       </article>
 
       <article class="info-card">
-        <p class="card-label">Affiliations</p>
-        <p>
-          Department of Mathematics, IIT Madras · School of Mathematics and Statistics, The University of Melbourne.
-        </p>
-      </article>
-
-      <article class="info-card">
-        <p class="card-label">Find me</p>
+        <p class="card-label">Academic profiles</p>
         <ul class="link-list">
           <li><a href="https://scholar.google.com/citations?user=1xQZCtQAAAAJ&amp;hl=en">Google Scholar</a></li>
           <li><a href="https://orcid.org/0009-0005-1392-0003">ORCID</a></li>
