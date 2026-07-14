@@ -410,10 +410,10 @@
           }
 
           if (document.readyState === "complete") {
-            window.setTimeout(loadVisitorMap, 10000);
+            window.setTimeout(loadVisitorMap, 30000);
           } else {
             window.addEventListener("load", function () {
-              window.setTimeout(loadVisitorMap, 10000);
+              window.setTimeout(loadVisitorMap, 30000);
             }, { once: true });
           }
         }());
