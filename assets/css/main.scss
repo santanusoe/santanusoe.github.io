@@ -508,7 +508,7 @@ img {
 }
 
 .talk-list__section {
-  margin-top: 2.1rem;
+  margin-top: 2.4rem;
 }
 
 .talk-list__section:first-child {
@@ -520,7 +520,9 @@ img {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 0 .75rem;
+  margin: 0 0 .85rem;
+  padding-bottom: .55rem;
+  border-bottom: 1px solid var(--global-border-color);
   color: var(--global-heading-color);
   font-size: 1.1rem;
 }
