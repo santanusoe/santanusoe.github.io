@@ -7,21 +7,36 @@ author_profile: true
 
 {% assign all_talks = site.talks | sort: "date" | reverse %}
 <div class="talks-intro">
-  <p class="page-kicker">Talks</p>
-  <p>Selected presentations, workshops, and short courses.</p>
+  <p class="page-kicker">Selected activities</p>
+  <p>Presentations, workshops, and courses.</p>
 </div>
 
 <div class="talk-list">
-  {% for talk in all_talks %}
-  <article class="talk-card">
-    <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
-    <h2 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ talk.title }}</a></h2>
-    <p class="talk-card__meta">
-      {{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}
-    </p>
-    {% if talk.type %}
-      <p class="talk-card__meta">{{ talk.type }}</p>
-    {% endif %}
-  </article>
-  {% endfor %}
+  <section class="talk-list__section" aria-labelledby="presentations-heading">
+    <h2 id="presentations-heading" class="talk-list__heading">Presentations</h2>
+    {% for talk in all_talks %}
+      {% if talk.type == "Paper presented" %}
+      {% assign display_title = talk.short_title | default: talk.title %}
+      <article class="talk-card">
+        <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
+        <h3 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ display_title }}</a></h3>
+        <p class="talk-card__meta">{{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}</p>
+      </article>
+      {% endif %}
+    {% endfor %}
+  </section>
+
+  <section class="talk-list__section" aria-labelledby="activities-heading">
+    <h2 id="activities-heading" class="talk-list__heading">Workshops &amp; courses</h2>
+    {% for talk in all_talks %}
+      {% unless talk.type == "Paper presented" %}
+      {% assign display_title = talk.short_title | default: talk.title %}
+      <article class="talk-card">
+        <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
+        <h3 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ display_title }}</a></h3>
+        <p class="talk-card__meta">{{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}</p>
+      </article>
+      {% endunless %}
+    {% endfor %}
+  </section>
 </div>
