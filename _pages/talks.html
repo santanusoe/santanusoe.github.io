@@ -5,112 +5,26 @@ permalink: /talks/
 author_profile: true
 ---
 
-<style>
-  .talks-intro {
-    margin: 0 0 1.5rem 0;
-    color: #555;
-    max-width: 760px;
-  }
+{% assign all_talks = site.talks | sort: "date" | reverse %}
+{% assign conference_talks = all_talks | where_exp: "talk", "talk.type contains 'Paper'" %}
+{% assign other_talks = all_talks | where_exp: "talk", "talk.type contains 'Paper'" | concat: all_talks %}
 
-  .talk-section {
-    margin-top: 1.75rem;
-  }
+<div class="talks-intro">
+  <p class="page-kicker">Talks</p>
+  <p>Selected presentations, workshops, and short courses.</p>
+</div>
 
-  .talk-section h2 {
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid #e5e5e5;
-    padding-bottom: 0.35rem;
-  }
-
-  .talk-card {
-    margin: 0 0 0.85rem 0;
-    padding: 0.85rem 1rem;
-    border-left: 4px solid #2f6f9f;
-    background: #fafafa;
-    border-radius: 6px;
-  }
-
-  .talk-card h3 {
-    margin: 0.15rem 0 0.2rem 0;
-    font-size: 1.05rem;
-  }
-
-  .talk-date {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #2f6f9f;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-
-  .talk-meta {
-    color: #555;
-    font-size: 0.95rem;
-  }
-</style>
-
-<p class="talks-intro">
-  Selected conference presentations, workshops, and short courses.
-</p>
-
-<section class="talk-section">
-  <h2>Conference presentations</h2>
-
+<div class="talk-list">
+  {% for talk in all_talks %}
   <article class="talk-card">
-    <div class="talk-date">December 2025</div>
-    <h3>5th International Conference on Nonlinear Applied Analysis and Optimisation </h3>
-    <div class="talk-meta">IIT Jodhpur, Rajasthan, India</div>
+    <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
+    <h2 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ talk.title }}</a></h2>
+    <p class="talk-card__meta">
+      {{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}
+    </p>
+    {% if talk.type %}
+      <p class="talk-card__meta">{{ talk.type }}</p>
+    {% endif %}
   </article>
-
-  <article class="talk-card">
-    <div class="talk-date">November 2025</div>
-    <h3>Melbourne India Postgraduate Academy Conference (MIPA 2025)</h3>
-    <div class="talk-meta">The University of Melbourne, online</div>
-  </article>
-</section>
-
-<section class="talk-section">
-  <h2>Workshops and short courses</h2>
-
-  <article class="talk-card">
-    <div class="talk-date">2--3 June 2026</div>
-    <h3>Workshop on Decision and Control</h3>
-    <div class="talk-meta">The University of Melbourne, Melbourne, Australia</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">February 2025</div>
-    <h3>Mathematics in Industry Study Group (MISG 2025)</h3>
-    <div class="talk-meta">Monash University, Victoria, Australia</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">May 2024</div>
-    <h3>Workshop on Linear Algebra through Data Science</h3>
-    <div class="talk-meta">Institute of Mathematical Sciences, Chennai, India</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">March 2024</div>
-    <h3>Mini-Course on Optimization Theory and Its Applications</h3>
-    <div class="talk-meta">Vietnam Institute for Advanced Study in Mathematics, online</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">July 2023</div>
-    <h3>Workshop on Data Science: Probabilistic and Optimization Methods</h3>
-    <div class="talk-meta">ICTS-TIFR, Bengaluru, India</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">December 2022</div>
-    <h3>NSMA 2022</h3>
-    <div class="talk-meta">Department of Mathematics, IIT Madras, Chennai, India</div>
-  </article>
-
-  <article class="talk-card">
-    <div class="talk-date">July 2022</div>
-    <h3>Analysis, Inverse Problems and Applications</h3>
-    <div class="talk-meta">Department of Mathematics, IIT Madras, Chennai, India</div>
-  </article>
-</section>
+  {% endfor %}
+</div>
