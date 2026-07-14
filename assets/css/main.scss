@@ -243,11 +243,12 @@ img {
 }
 
 .page__content h1,
+.page__content h1,
 .page__content h2,
 .page__content h3,
 .archive h1,
-.archive h2,
-.archive h3 {
+.archive > h2,
+.archive > h3 {
   color: var(--global-heading-color);
   line-height: 1.25;
 }
@@ -466,7 +467,10 @@ img {
 
 .teaching-card__title,
 .talk-card__title {
+  display: block;
   margin: 0 0 .28rem;
+  padding: 0;
+  border: 0;
   color: var(--global-heading-color);
   font-size: 1.02rem;
   font-weight: 750;
