@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Santanu Soe | Mathematics &amp; Optimization</title>
+  <title>Santanu</title>
   <meta name="description" content="Academic website of Santanu Soe, a Joint PhD scholar in Mathematics at IIT Madras and The University of Melbourne.">
   <link rel="canonical" href="https://santanusoe.github.io/">
   <style>
@@ -12,10 +12,10 @@
       --muted: #64748b;
       --line: #e2e8f0;
       --surface: #ffffff;
-      --wash: #f8fafc;
-      --accent: #365a7a;
-      --accent-dark: #25435f;
-      --accent-wash: #eef3f7;
+      --wash: #fbfcfd;
+      --accent: #315d7d;
+      --accent-dark: #23445e;
+      --accent-wash: #f0f4f7;
       --shadow: 0 8px 24px rgba(15, 23, 42, .07);
     }
 
@@ -42,13 +42,20 @@
     }
 
     a:hover,
-    a:focus-visible { color: var(--accent); }
+    a:focus-visible { color: var(--accent-dark); }
+
+    main a:focus-visible,
+    footer a:focus-visible {
+      outline: 2px solid rgba(49, 93, 125, .28);
+      outline-offset: 2px;
+      border-radius: .18rem;
+    }
 
     .site-nav {
       position: sticky;
       top: 0;
       z-index: 5;
-      border-bottom: 1px solid rgba(223, 231, 238, .9);
+      border-bottom: 1px solid var(--line);
       background: #ffffff;
     }
 
@@ -93,14 +100,14 @@
     .nav-links .active a {
       color: var(--ink);
       background: var(--accent-wash);
-      border-color: rgba(54, 90, 122, .14);
+      border-color: rgba(49, 93, 125, .16);
     }
 
     .nav-links a:focus-visible {
       color: var(--ink);
       background: var(--accent-wash);
       border-color: var(--accent);
-      outline: 2px solid rgba(54, 90, 122, .28);
+      outline: 2px solid rgba(49, 93, 125, .28);
       outline-offset: 2px;
     }
 
@@ -192,7 +199,7 @@
 
     .keyword-list li {
       padding: .24rem .5rem;
-      border: 1px solid #d5e0e9;
+      border: 1px solid #d7e1e8;
       border-radius: 999px;
       color: var(--accent-dark);
       background: var(--accent-wash);
@@ -210,14 +217,37 @@
     }
 
     .link-list a {
-      font-size: .82rem;
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.85rem;
+      padding: .2rem .46rem;
+      border: 1px solid var(--line);
+      border-radius: .45rem;
+      color: var(--accent-dark);
+      background: #ffffff;
+      font-size: .8rem;
       font-weight: 650;
       text-decoration: none;
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .link-list a:hover {
+      color: var(--accent-dark);
+      border-color: #c5d4df;
+      background: var(--accent-wash);
+    }
+
+    .link-list a:focus-visible {
+      color: var(--accent-dark);
+      border-color: var(--accent);
+      background: var(--accent-wash);
+      outline: 2px solid rgba(49, 93, 125, .28);
+      outline-offset: 2px;
     }
 
     .site-footer {
       border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, .68);
+      background: #ffffff;
     }
 
     .site-footer__inner {
