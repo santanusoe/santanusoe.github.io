@@ -2,15 +2,15 @@
 ---
 
 :root {
-  --global-bg-color: #f8fafc;
+  --global-bg-color: #fbfcfd;
   --global-text-color: #334155;
   --global-text-color-light: #64748b;
   --global-heading-color: #0f172a;
-  --global-link-color: #365a7a;
-  --global-link-color-hover: #25435f;
+  --global-link-color: #315d7d;
+  --global-link-color-hover: #23445e;
   --global-border-color: #e2e8f0;
   --global-card-color: #ffffff;
-  --global-accent-soft: #eef3f7;
+  --global-accent-soft: #f0f4f7;
   --global-shadow: 0 8px 24px rgba(15, 23, 42, .07);
 }
 
@@ -98,14 +98,14 @@ img {
 .site-nav-links__item.selected a {
   color: var(--global-heading-color);
   background: var(--global-accent-soft);
-  border-color: rgba(54, 90, 122, .14);
+  border-color: rgba(49, 93, 125, .16);
 }
 
 .site-nav-links__item a:focus-visible {
   color: var(--global-heading-color);
   background: var(--global-accent-soft);
   border-color: var(--global-link-color);
-  outline: 2px solid rgba(54, 90, 122, .28);
+  outline: 2px solid rgba(49, 93, 125, .28);
   outline-offset: 2px;
 }
 
@@ -191,6 +191,7 @@ img {
 .author__urls a {
   color: #506176;
   text-decoration: none;
+  text-underline-offset: .16em;
 }
 
 .author__urls a:hover,
@@ -404,9 +405,9 @@ img {
   display: inline-flex;
   align-items: center;
   gap: .24rem;
-  min-height: 1.45rem;
-  padding: .08rem .36rem;
-  border: 1px solid #d3dde6;
+  min-height: 1.6rem;
+  padding: .12rem .42rem;
+  border: 1px solid #d5dfe7;
   border-radius: .4rem;
   color: var(--global-link-color-hover);
   background: #fff;
@@ -436,7 +437,7 @@ img {
   color: var(--global-link-color-hover);
   border-color: var(--global-link-color);
   background: var(--global-accent-soft);
-  outline: 2px solid rgba(54, 90, 122, .3);
+  outline: 2px solid rgba(49, 93, 125, .3);
   outline-offset: 2px;
 }
 
@@ -476,7 +477,7 @@ img {
 
 .teaching-card:hover,
 .talk-card:hover {
-  border-color: #cbd8e3;
+  border-color: #c9d8e3;
   box-shadow: none;
 }
 
@@ -518,7 +519,21 @@ img {
 }
 
 .talk-card a {
+  color: var(--global-heading-color);
   text-decoration: none;
+  text-underline-offset: .16em;
+}
+
+.talk-card a:hover {
+  color: var(--global-link-color-hover);
+  text-decoration: underline;
+}
+
+.talk-card a:focus-visible {
+  color: var(--global-link-color-hover);
+  outline: 2px solid rgba(49, 93, 125, .28);
+  outline-offset: 2px;
+  border-radius: .16rem;
 }
 
 .talk-list__section {
