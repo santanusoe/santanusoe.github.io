@@ -65,18 +65,8 @@
     .header-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       min-height: 3.6rem;
-      gap: 2rem;
-    }
-
-    .site-name {
-      color: var(--ink);
-      font-size: .9rem;
-      font-weight: 720;
-      letter-spacing: -.01em;
-      text-decoration: none;
-      white-space: nowrap;
     }
 
     .nav-links {
@@ -168,8 +158,20 @@
       grid-template-columns: minmax(0, 1.45fr) minmax(13rem, .75fr);
       gap: clamp(2rem, 6vw, 5rem);
       margin-top: clamp(2.7rem, 6vw, 4.4rem);
-      padding-top: 1.3rem;
-      border-top: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .research-box {
+      padding: 1.05rem 1.15rem 1.1rem;
+      border: 1px solid #d8e1e7;
+      border-left: 3px solid var(--accent);
+      border-radius: .7rem;
+      background: var(--paper);
+      box-shadow: 0 8px 22px rgba(23, 32, 51, .04);
+    }
+
+    .find-block {
+      padding-top: .85rem;
     }
 
     .detail-heading {
@@ -226,15 +228,7 @@
 
     @media (max-width: 700px) {
       .header-inner {
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 0;
-        padding-top: .65rem;
-      }
-
-      .site-name {
-        width: 100%;
-        text-align: center;
       }
 
       .nav-links {
@@ -263,6 +257,8 @@
         gap: 1.4rem;
         margin-top: 2.8rem;
       }
+
+      .find-block { padding-top: 0; }
     }
 
     @media (max-width: 420px) {
@@ -281,7 +277,6 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="site-name" href="/" aria-current="page">Santanu Soe</a>
       <nav aria-label="Primary navigation">
         <ul class="nav-links">
           <li class="active"><a href="/" aria-current="page">About</a></li>
@@ -316,7 +311,7 @@
     </section>
 
     <section class="profile-details" aria-label="Academic profile">
-      <div>
+      <div class="research-box">
         <h2 class="detail-heading">Research keywords</h2>
         <p class="detail-text">
           Operator splitting methods, primal–dual algorithms, monotone inclusion problems,
@@ -324,7 +319,7 @@
         </p>
       </div>
 
-      <div>
+      <div class="find-block">
         <h2 class="detail-heading">Find me</h2>
         <ul class="profile-links">
           <li><a href="https://scholar.google.com/citations?user=1xQZCtQAAAAJ&amp;hl=en">Google Scholar</a></li>
@@ -337,7 +332,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      &copy; 2026 Santanu Soe.
+      &copy; 2026 Santanu Soe · Built with <a href="https://academicpages.github.io/" rel="nofollow">Academic Pages</a>.
     </div>
   </footer>
 </body>
