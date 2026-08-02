@@ -5,38 +5,111 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% assign all_talks = site.talks | sort: "date" | reverse %}
-<div class="talks-intro">
-  <p class="page-kicker">Selected activities</p>
-  <p>Presentations, workshops, and courses.</p>
-</div>
+<p class="section-intro">
+  Research presentations and selected academic activities.
+</p>
 
-<div class="talk-list">
-  <section class="talk-list__section" aria-labelledby="presentations-heading">
-    <h2 id="presentations-heading" class="talk-list__heading">Presentations</h2>
-    {% for talk in all_talks %}
-      {% if talk.type == "Paper presented" %}
-      {% assign display_title = talk.short_title | default: talk.title %}
-      <article class="talk-card">
-        <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
-        <h3 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ display_title }}</a></h3>
-        <p class="talk-card__meta">{{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}</p>
-      </article>
-      {% endif %}
-    {% endfor %}
-  </section>
+<section class="activity-section" aria-labelledby="presentations-heading">
+  <h2 id="presentations-heading" class="activity-section__title">Research presentations</h2>
+  <ol class="activity-list">
+    <li class="activity-entry">
+      <div class="activity-entry__date">4–6 Dec 2025</div>
+      <div class="activity-entry__body">
+        <h3>5th International Conference on Nonlinear Applied Analysis and Optimization</h3>
+        <p class="activity-entry__meta">IIT Jodhpur · Rajasthan, India</p>
+        <p>Research paper presentation.</p>
+      </div>
+    </li>
 
-  <section class="talk-list__section" aria-labelledby="activities-heading">
-    <h2 id="activities-heading" class="talk-list__heading">Workshops &amp; courses</h2>
-    {% for talk in all_talks %}
-      {% unless talk.type == "Paper presented" %}
-      {% assign display_title = talk.short_title | default: talk.title %}
-      <article class="talk-card">
-        <div class="talk-card__date">{{ talk.date | date: "%B %Y" }}</div>
-        <h3 class="talk-card__title"><a href="{{ talk.url | relative_url }}">{{ display_title }}</a></h3>
-        <p class="talk-card__meta">{{ talk.venue }}{% if talk.location %} · {{ talk.location }}{% endif %}</p>
-      </article>
-      {% endunless %}
-    {% endfor %}
-  </section>
-</div>
+    <li class="activity-entry">
+      <div class="activity-entry__date">12–14 Nov 2025</div>
+      <div class="activity-entry__body">
+        <h3>Melbourne India Postgraduate Academy Conference (MIPA 2025)</h3>
+        <p class="activity-entry__meta">The University of Melbourne · Online</p>
+        <p>Research paper presentation.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="activity-section" aria-labelledby="workshops-heading">
+  <h2 id="workshops-heading" class="activity-section__title">Programmes and workshops</h2>
+  <ol class="activity-list">
+    <li class="activity-entry">
+      <div class="activity-entry__date">27–31 Jul 2026</div>
+      <div class="activity-entry__body">
+        <h3>Mathematics of Computation and Optimisation (MoCaO) Lectures</h3>
+        <p class="activity-entry__meta">The University of Melbourne · Melbourne, Australia</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">2–3 Jun 2026</div>
+      <div class="activity-entry__body">
+        <h3>Workshop on Decision and Control 2026</h3>
+        <p class="activity-entry__meta">The University of Melbourne · Melbourne, Australia</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">10–14 Feb 2025</div>
+      <div class="activity-entry__body">
+        <h3>Mathematics in Industry Study Group (MISG 2025)</h3>
+        <p class="activity-entry__meta">Monash University, Clayton Campus · Victoria, Australia</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">20–26 May 2024</div>
+      <div class="activity-entry__body">
+        <h3>Workshop on Linear Algebra through Data Science</h3>
+        <p class="activity-entry__meta">Institute of Mathematical Sciences · Chennai, India</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">18–21 Mar 2024</div>
+      <div class="activity-entry__body">
+        <h3>Mini-Course on Optimization Theory and Its Applications</h3>
+        <p class="activity-entry__meta">VIASM · Vietnam</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">3–7 Jul 2023</div>
+      <div class="activity-entry__body">
+        <h3>Workshop on Data Science: Probabilistic and Optimization Methods</h3>
+        <p class="activity-entry__meta">ICTS-TIFR · Bengaluru, India</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="activity-section" aria-labelledby="events-heading">
+  <h2 id="events-heading" class="activity-section__title">Earlier academic events</h2>
+  <ol class="activity-list">
+    <li class="activity-entry">
+      <div class="activity-entry__date">Dec 2023</div>
+      <div class="activity-entry__body">
+        <h3>National Symposium on Mathematics and Applications (NSMA)</h3>
+        <p class="activity-entry__meta">IIT Madras · Chennai, India</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">Dec 2022</div>
+      <div class="activity-entry__body">
+        <h3>National Symposium on Mathematics and Applications (NSMA)</h3>
+        <p class="activity-entry__meta">IIT Madras · Chennai, India</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">18–21 Jul 2022</div>
+      <div class="activity-entry__body">
+        <h3>Analysis, Inverse Problems and Applications</h3>
+        <p class="activity-entry__meta">Department of Mathematics, IIT Madras · Chennai, India</p>
+      </div>
+    </li>
+  </ol>
+</section>
