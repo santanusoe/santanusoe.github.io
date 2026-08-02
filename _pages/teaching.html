@@ -5,21 +5,78 @@ permalink: /teaching/
 author_profile: true
 ---
 
-{% assign teaching_items = site.teaching | sort: "date" | reverse %}
+<p class="section-intro">
+  Teaching assistance, course support, and mathematics mentoring.
+</p>
 
-<ul class="teaching-list">
-  {% for post in teaching_items %}
-    {% unless post.title == "Teaching experience 1" or post.title == "Teaching experience 2" %}
-    <li class="teaching-card">
-      <div class="teaching-card__type">{{ post.type }}</div>
-      <h2 class="teaching-card__title">{{ post.title }}</h2>
-      <p class="teaching-card__meta">
-        {{ post.venue }} · {{ post.date | date: "%B %Y" }}
-      </p>
-      {% if post.excerpt %}
-        <p class="teaching-card__excerpt">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
-      {% endif %}
+<section class="activity-section" aria-labelledby="teaching-assistance-heading">
+  <h2 id="teaching-assistance-heading" class="activity-section__title">Teaching assistance</h2>
+  <ol class="activity-list">
+    <li class="activity-entry">
+      <div class="activity-entry__date">Jan–Mar 2026</div>
+      <div class="activity-entry__body">
+        <h3>Multivariable Calculus</h3>
+        <p class="activity-entry__meta">NPTEL · Teaching Assistant</p>
+        <p>Teaching support for the eight-week online course.</p>
+      </div>
     </li>
-    {% endunless %}
-  {% endfor %}
-</ul>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">Jul–Nov 2025</div>
+      <div class="activity-entry__body">
+        <h3>Operations Research (MA5850)</h3>
+        <p class="activity-entry__meta">IIT Madras · Teaching Assistant</p>
+        <p>Teaching assistance for the elective course.</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">2024</div>
+      <div class="activity-entry__body">
+        <h3>Probability, Statistics, and Stochastic Processes for B.Tech II</h3>
+        <p class="activity-entry__meta">IIT Madras · Teaching Assistant</p>
+        <p>Supported the course in two terms: January–May and July–November.</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">Jul–Dec 2023</div>
+      <div class="activity-entry__body">
+        <h3>Functions of Several Variables for B.Tech I</h3>
+        <p class="activity-entry__meta">IIT Madras · Teaching Assistant</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="activity-section" aria-labelledby="mentoring-heading">
+  <h2 id="mentoring-heading" class="activity-section__title">Mathematics mentoring</h2>
+  <ol class="activity-list">
+    <li class="activity-entry">
+      <div class="activity-entry__date">May–Dec 2025</div>
+      <div class="activity-entry__body">
+        <h3>Linear Algebra, Real Analysis, and Functional Analysis</h3>
+        <p class="activity-entry__meta">Sunday Mathematics Classes · IIT Madras</p>
+        <p>Enrichment and problem-solving sessions for students from various colleges.</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">Apr–May 2025</div>
+      <div class="activity-entry__body">
+        <h3>Complex Analysis and Linear Algebra</h3>
+        <p class="activity-entry__meta">Sunday Mathematics Classes · IIT Madras</p>
+        <p>Enrichment and problem-solving sessions for students from various colleges.</p>
+      </div>
+    </li>
+
+    <li class="activity-entry">
+      <div class="activity-entry__date">Apr 2024</div>
+      <div class="activity-entry__body">
+        <h3>Functional Analysis</h3>
+        <p class="activity-entry__meta">Sunday Mathematics Classes · IIT Madras</p>
+        <p>Enrichment and problem-solving sessions for students from various colleges.</p>
+      </div>
+    </li>
+  </ol>
+</section>
